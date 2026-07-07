@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Client Login Portal - Sign in to access your campaign stats, keyword reports, and attribution dashboards at Stackly.">
+    <title>Client Login | Stackly Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+</head>
+<body style="overflow-y: hidden; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-primary);">
+
+    <div class="preloader">
+        <div class="preloader-loader"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="preloader-logo-img">
+    </div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <div class="background-shapes" style="position: fixed;">
+        <div class="shape shape-1" style="top: 10%; left: 20%; width: 300px; height: 300px; background: var(--primary);"></div>
+        <div class="shape shape-2" style="bottom: 10%; right: 20%; width: 400px; height: 400px; background: var(--accent);"></div>
+    </div>
+
+    <!-- LOGIN CARD -->
+    <div class="glass-card" style="width: 100%; max-width: 440px; padding: 3rem 2.5rem; text-align: center; z-index: 10;" data-aos="zoom-in" data-aos-duration="1000">
+        <div style="margin-bottom: 2rem;">
+            <a href="index.html" style="display: inline-block;">
+                <img src="images/logo.webp" alt="Stackly Logo" style="height: 42px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
+            </a>
+            <h2 style="font-size: 1.5rem; margin-top: 1rem; color: var(--text-light);">Access Client Portal</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Sign in to view real-time attribution reports.</p>
+        </div>
+
+        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block';">
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
+                    <input type="email" id="email" placeholder="client@company.com" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast);">
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="password" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Password</label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
+                    <input type="password" id="password" placeholder="••••••••" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast);">
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; margin-top: 0.2rem;">
+                <label style="display: flex; align-items: center; gap: 0.4rem; color: var(--text-muted); cursor: pointer;">
+                    <input type="checkbox" style="accent-color: var(--accent);"> Remember me
+                </label>
+                <a href="#" style="color: var(--accent); font-weight: 600;">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-accent" style="width: 100%; padding: 0.9rem; margin-top: 0.5rem; font-weight: 700; border-radius: var(--radius-sm);">Sign In to Dashboard <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+        </form>
+
+        <div id="loginSuccess" style="display: none; padding: 2rem 0; animation: fadeIn 0.5s ease;">
+            <i class="fa-solid fa-circle-check" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem;"></i>
+            <h3 style="color: var(--text-light); font-size: 1.3rem;">Authentication Approved</h3>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 1.5rem 0; font-size: 0.9rem;">Redirecting to your Stackly Analytics panel...</p>
+            <a href="index.html" class="btn btn-secondary" style="display: inline-block;">Return Home</a>
+        </div>
+
+        <div style="margin-top: 2rem; border-top: 1px solid var(--border-glass); padding-top: 1.5rem;">
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1rem;">Or sign in using SSO</p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-google"></i></a>
+                <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-apple"></i></a>
+                <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-windows"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Switch Button fixed in bottom right -->
+    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 100;">
+        <button class="theme-switch" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

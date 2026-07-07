@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stackly - Next-Generation Digital Marketing Agency. SEO, Branding, Social Media, Google Ads, and custom Web Development solutions.">
+    <title>Stackly | Next-Gen Digital Marketing & Creative Agency</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- AOS CSS for scroll animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+</head>
+<body style="overflow-y: hidden;">
+
+    <!-- ==========================================
+       PRELOADER (GROWTH CHARTS PULSE)
+       ========================================== -->
+    <div class="preloader">
+        <div class="preloader-loader"></div>
+        <img src="images/logo.webp" alt="Stackly Logo" class="preloader-logo-img">
+    </div>
+
+    <!-- ==========================================
+       SCROLL PROGRESS & CUSTOM CURSOR
+       ========================================== -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar"></div>
+    </div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- ==========================================
+       HEADER & NAVBAR
+       ========================================== -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.webp" alt="Stackly Logo" class="brand-logo-img">
+            </a>
+            
+            <nav class="navbar">
+                <div class="drawer-header">
+                    <a href="index.html" class="logo">
+                        <img src="images/logo.webp" alt="Stackly Logo" class="brand-logo-img">
+                    </a>
+                    <button class="drawer-close" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="process.html">Process</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-controls">
+                <button class="theme-switch" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary btn-sm">Get Free Audit</a>
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+       HERO SECTION (UNIQUE INTERACTIVE COMMAND CENTER CONSOLE)
+       ========================================== -->
+    <section class="hero" id="hero">
+        <div class="background-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        
+        <div class="container">
+            <!-- Command Center Control Console -->
+            <div class="hero-console glass-card" data-aos="fade-up" data-aos-duration="1200">
+                <!-- Console Top Window Bar -->
+                <div class="console-top-bar">
+                    <div class="console-dots">
+                        <span class="console-dot console-dot-red"></span>
+                        <span class="console-dot console-dot-yellow"></span>
+                        <span class="console-dot console-dot-green"></span>
+                    </div>
+                    <div class="console-title">STACKLY CORE OPERATIONS CONTROL PANEL</div>
+                    <div class="console-status"><span class="status-pulse"></span> CONSOLE ONLINE</div>
+                </div>
+
+                <!-- Console Layout Grid -->
+                <div class="console-grid">
+                    <!-- Left Sidebar Tab Controllers -->
+                    <div class="console-sidebar">
+                        <div class="console-sidebar-title">CAMPAIGN TARGETS</div>
+                        <button class="console-tab-btn active" data-hero-tab="brand">
+                            <i class="fa-solid fa-crown"></i> 1. Brand Position
+                        </button>
+                        <button class="console-tab-btn" data-hero-tab="seo">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i> 2. SEO Traffic
+                        </button>
+                        <button class="console-tab-btn" data-hero-tab="ppc">
+                            <i class="fa-solid fa-money-bill-trend-up"></i> 3. Paid ROAS Bids
+                        </button>
+                    </div>
+
+                    <!-- Main Dashboard Display (Brand Active by Default) -->
+                    <div class="console-display">
+                        <!-- Tab Content 1: Brand Position -->
+                        <div class="console-content-panel active" id="panel-brand">
+                            <div class="panel-info">
+                                <span class="badge"><i class="fa-solid fa-crown"></i> Brand Power</span>
+                                <h1>Command Attention with <span>Premium Identity</span></h1>
+                                <p>We establish beautiful vector branding guidelines, custom interactive UI layouts, and distinct voice matrix guides that differentiate your business globally.</p>
+                                
+                                <div class="hero-actions">
+                                    <a href="#contact" class="btn btn-accent">Request Style Audit <i class="fa-solid fa-arrow-right"></i></a>
+                                    <a href="#portfolio" class="btn btn-secondary">View Brand Book</a>
+                                </div>
+
+                                <div class="hero-stats-quick">
+                                    <div class="quick-stat">
+                                        <h3 data-target="100" data-suffix="%">0%</h3>
+                                        <p>Style Authenticity</p>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <h3 data-target="2" data-suffix=".5x">0x</h3>
+                                        <p>Audience Trust</p>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <h3 data-target="15" data-suffix="+">0+</h3>
+                                        <p>Design Honors</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel-visualization">
+                                <div class="brand-viz-box">
+                                    <svg viewBox="0 0 300 240" class="brand-viz-svg">
+                                        <!-- Geometric lines -->
+                                        <circle cx="150" cy="120" r="80" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6" fill="none" />
+                                        <circle cx="150" cy="120" r="50" stroke="var(--accent)" stroke-width="1.5" fill="none" />
+                                        <!-- Connecting lines -->
+                                        <line x1="70" y1="120" x2="230" y2="120" stroke="var(--border-glass)" stroke-width="1" />
+                                        <line x1="150" y1="40" x2="150" y2="200" stroke="var(--border-glass)" stroke-width="1" />
+                                        <!-- Core Nodes -->
+                                        <circle cx="150" cy="120" r="10" fill="var(--gradient-rainbow)" />
+                                        <circle cx="150" cy="40" r="6" fill="var(--primary)" />
+                                        <circle cx="150" cy="200" r="6" fill="var(--primary)" />
+                                        <circle cx="70" cy="120" r="6" fill="var(--accent)" />
+                                        <circle cx="230" cy="120" r="6" fill="var(--accent)" />
+                                        
+                                        <!-- Typography Mockup -->
+                                        <text x="150" y="20" class="brand-text-node" text-anchor="middle">STACKLY DESIGN SYSTEM</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content 2: SEO Traffic -->
+                        <div class="console-content-panel" id="panel-seo">
+                            <div class="panel-info">
+                                <span class="badge"><i class="fa-solid fa-magnifying-glass-chart"></i> Search Pipelines</span>
+                                <h1>Secure Authority via <span>Semantic SEO</span></h1>
+                                <p>We map high-intent keyword hubs, restructure page rendering schemas, and automate structured publishing loops that generate constant lead pipelines.</p>
+                                
+                                <div class="hero-actions">
+                                    <a href="#contact" class="btn btn-accent">Claim Keyword Audit <i class="fa-solid fa-magnifying-glass"></i></a>
+                                    <a href="#services" class="btn btn-secondary">SEO Stack</a>
+                                </div>
+
+                                <div class="hero-stats-quick">
+                                    <div class="quick-stat">
+                                        <h3 data-target="310" data-suffix="%">0%</h3>
+                                        <p>Organic Increase</p>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <h3 data-target="45" data-suffix="K+">0K+</h3>
+                                        <p>Ranking Clusters</p>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <h3 data-target="0" data-suffix="USD">0USD</h3>
+                                        <p>Cost Per Click</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel-visualization">
+                                <div class="seo-viz-box">
+                                    <svg viewBox="0 0 300 240" class="seo-viz-svg">
+                                        <line x1="20" y1="200" x2="280" y2="200" stroke="var(--border-glass)" stroke-width="1.5" />
+                                        <!-- Graph Line -->
+                                        <path d="M 20,180 Q 80,170 140,110 T 260,30" stroke="var(--accent)" stroke-width="3" fill="none" class="graph-path" />
+                                        <!-- Grid nodes -->
+                                        <circle cx="20" cy="180" r="5" fill="var(--accent)" />
+                                        <circle cx="140" cy="110" r="5" fill="var(--accent)" />
+                                        <circle cx="260" cy="30" r="5" fill="var(--accent)" />
+                                        <text x="260" y="20" class="brand-text-node" text-anchor="middle">RANK #1</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Content 3: Paid ROAS Bids -->
+                        <div class="console-content-panel" id="panel-ppc">
+                            <div class="panel-info">
+                                <span class="badge"><i class="fa-solid fa-money-bill-trend-up"></i> ROAS Scale</span>
+                                <h1>Maximize Yield with <span>Smart Ad Spend</span></h1>
+                                <p>We optimize ad segments on Meta and Google using programmatic bidding thresholds, creative split parameters, and real-time audience trackers.</p>
+                                
+                                <div class="hero-actions">
+                                    <a href="#contact" class="btn btn-accent">Launch Paid Audit <i class="fa-solid fa-chart-line"></i></a>
+                                    <a href="#pricing" class="btn btn-secondary">Investment Tiers</a>
+                                </div>
+
+                                <div class="hero-stats-quick">
+                                    <div class="quick-stat">
+                                        <h3 data-target="3" data-suffix=".5x">0x</h3>
+                                        <p>Average ROAS</p>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <h3 data-target="15" data-suffix="M+">0M+</h3>
+                                        <p>Budgets Restructured</p>
+                                    </div>
+                                    <div class="quick-stat">
+                                        <h3 data-target="98" data-suffix="%">0%</h3>
+                                        <p>Lead Quality Metric</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel-visualization">
+                                <div class="ppc-viz-box">
+                                    <!-- Funnel visual drawing -->
+                                    <svg viewBox="0 0 300 240" class="ppc-viz-svg">
+                                        <!-- Funnel shape lines -->
+                                        <polygon points="50,40 250,40 200,100 100,100" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.6" />
+                                        <polygon points="100,100 200,100 170,160 130,160" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.8" />
+                                        <polygon points="130,160 170,160 160,210 140,210" stroke="var(--accent)" stroke-width="2" fill="none" />
+                                        
+                                        <!-- Floating bubbles representing incoming traffic converting -->
+                                        <circle cx="150" cy="60" r="12" fill="var(--primary)" opacity="0.4" class="funnel-bubble-1" />
+                                        <circle cx="150" cy="130" r="8" fill="var(--accent)" opacity="0.6" class="funnel-bubble-2" />
+                                        <circle cx="150" cy="185" r="5" fill="var(--accent)" class="funnel-bubble-3" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="quick-cards" style="padding-bottom: 2rem; position: relative; z-index: 10;">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800" style="text-align: center; margin-bottom: 3rem;">
+                <span class="badge"><i class="fa-solid fa-bolt"></i> Operations Hub</span>
+                <h2>Start Your <span>Growth Journey</span></h2>
+                <p>Choose an initial onboarding path to analyze current traffic leaks and deploy custom dashboard reports.</p>
+            </div>
+            <div class="services-grid" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div class="glass-card" style="padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(139, 92, 246, 0.25);" data-aos="fade-up" data-aos-duration="800">
+                    <div>
+                        <div class="service-icon-box" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-gauge-high"></i></div>
+                        <h3 style="margin-bottom: 0.8rem;">Campaign Audits</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Review current tracking parameters, traffic paths, and budget bottlenecks before you start.</p>
+                    </div>
+                    <a href="contact.html" class="service-link" style="margin-top: 1.5rem;">Request Audit <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+                
+                <div class="glass-card" style="padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(6, 182, 212, 0.25);" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+                    <div>
+                        <div class="service-icon-box" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h3 style="margin-bottom: 0.8rem;">Attribution Dashboards</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Integrate looker studio reports directly into your client profiles for total budget transparency.</p>
+                    </div>
+                    <a href="login.html" class="service-link" style="margin-top: 1.5rem;">Launch Dashboard <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+                
+                <div class="glass-card" style="padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(139, 92, 246, 0.25);" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div>
+                        <div class="service-icon-box" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-user-gear"></i></div>
+                        <h3 style="margin-bottom: 0.8rem;">Weekly Specialist Syncs</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Direct voice channels with campaign architects, removing slow intermediary managers.</p>
+                    </div>
+                    <a href="about.html" class="service-link" style="margin-top: 1.5rem;">Meet Architects <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="services-summary" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
+                <span class="badge"><i class="fa-solid fa-gears"></i> Core Capabilities</span>
+                <h2>Scalable Channels We <span>Command</span></h2>
+                <p>A brief overview of our three primary digital growth engines, designed to scale search rankings, ad spend, and codebases.</p>
+            </div>
+            
+            <div class="services-grid" style="grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                <div class="glass-card service-card" data-aos="fade-up" data-aos-duration="800">
+                    <div>
+                        <div class="service-icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <h3>SEO Optimization</h3>
+                        <p>Establish high organic search authority, map content clusters, and capture high-intent traffic pipelines.</p>
+                    </div>
+                    <a href="seo.html" class="service-link">Deep Dive SEO <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+                
+                <div class="glass-card service-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="150">
+                    <div>
+                        <div class="service-icon-box"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                        <h3>Paid Ads (PPC)</h3>
+                        <p>Construct high-ROAS bidding rules on Google and Meta, targeting actual converting metrics.</p>
+                    </div>
+                    <a href="ppc.html" class="service-link">Explore Bidding <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+                
+                <div class="glass-card service-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                    <div>
+                        <div class="service-icon-box"><i class="fa-solid fa-code"></i></div>
+                        <h3>Web Development</h3>
+                        <p>Develop modular responsive client portals using high-performance Next.js and Vite structures.</p>
+                    </div>
+                    <a href="web-development.html" class="service-link">View Tech Stack <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;" data-aos="fade-up" data-aos-duration="800">
+                <a href="index.html" class="btn btn-secondary">Browse All Capabilities <i class="fa-solid fa-list-check"></i></a>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="brand-advantage">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-visual" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="about-image-wrapper">
+                        <img src="images/about_team.jpg" alt="Stackly Team Strategy Meeting">
+                    </div>
+                </div>
+                
+                <div class="about-content" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <span class="badge"><i class="fa-solid fa-bezier-curve"></i> Why Partner With Us</span>
+                    <h2>Fusing Data Telemetry With <span>Creative Engineering</span></h2>
+                    <p>We bypass standard vanity impressions to analyze metrics that directly impact your margins: average order value, acquisition costs, and customer lifetimes.</p>
+                    <p>Our multidisciplinary team acts as an extension of your own engineering staff, building secure database pipes and attribution setups.</p>
+                    
+                    <div class="about-pillars">
+                        <div class="pillar-card">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <div>
+                                <h4>Data-First Audits</h4>
+                                <p>We debug and check tracking configurations before mapping campaigns.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-card">
+                            <i class="fa-solid fa-bolt"></i>
+                            <div>
+                                <h4>Rapid Deployments</h4>
+                                <p>Agile weekly execution sprints to react to algorithm changes instantly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="integration-strip" style="background-color: var(--bg-secondary); padding: 4rem 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="badge" style="margin-bottom: 0;"><i class="fa-solid fa-plug"></i> Integrations</span>
+            </div>
+            <div class="tools-grid" data-aos="zoom-in" data-aos-duration="1000" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
+                <div class="glass-card tool-card" style="padding: 1.5rem;"><i class="fa-brands fa-google"></i><h4>GA4 Attribution</h4></div>
+                <div class="glass-card tool-card" style="padding: 1.5rem;"><i class="fa-brands fa-meta"></i><h4>Meta Advertising</h4></div>
+                <div class="glass-card tool-card" style="padding: 1.5rem;"><i class="fa-brands fa-hubspot"></i><h4>HubSpot Sync</h4></div>
+                <div class="glass-card tool-card" style="padding: 1.5rem;"><i class="fa-brands fa-figma"></i><h4>Figma Wireframes</h4></div>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="testimonials" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
+                <span class="badge"><i class="fa-solid fa-quote-left"></i> Client Reviews</span>
+                <h2>What Founders <span>Say About Us</span></h2>
+                <p>Real feedback from actual clients managing global platforms built on Stackly design systems.</p>
+            </div>
+            
+            <div class="testimonials-slider" data-aos="fade-up" data-aos-duration="1000">
+                <div class="testimonial-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-box">
+                            <div class="testi-stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="testi-quote">"Stackly revamped our custom portal and integrated SEO keyword pipelines. Within 4 months, our organic traffic surpassed all paid channels combined. Absolute growth partners."</p>
+                            <div class="testi-author">
+                                <img src="images/team_1.jpg" alt="Client Sarah Jenkins">
+                                <div class="testi-info">
+                                    <h4>Sarah Jenkins</h4>
+                                    <p>CEO, NovaSaaS Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide">
+                        <div class="testimonial-box">
+                            <div class="testi-stars">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="testi-quote">"We scaled our online retail store conversion rate by 2.4x with their UX redesign. Their developers write clean code and their analytics dashboards are highly visual."</p>
+                            <div class="testi-author">
+                                <img src="images/team_2.jpg" alt="Client Alex Rivera">
+                                <div class="testi-info">
+                                    <h4>Alex Rivera</h4>
+                                    <p>Operations Director, RetailFlow Group</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn prev" aria-label="Previous Testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="slider-btn next" aria-label="Next Testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" id="blog" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
+                <span class="badge"><i class="fa-solid fa-newspaper"></i> Agency Insights</span>
+                <h2>Latest from the <span>Marketing Blog</span></h2>
+                <p>Read expert articles on SEO clusters, conversion design, and paid ad algorithms.</p>
+            </div>
+            
+            <div class="blog-grid" data-aos="fade-up" data-aos-duration="1000">
+                <!-- Blog 1 -->
+                <div class="glass-card blog-card">
+                    <div class="blog-img-wrap">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1e1b4b, #311042); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-magnifying-glass" style="font-size: 3.5rem; color: var(--accent);"></i></div>
+                        <span class="blog-tag">SEO Strategy</span>
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span>July 6, 2026</span>
+                            <span>• 5 Min Read</span>
+                        </div>
+                        <h3>10 SEO Trends Shaping Organic Visibility</h3>
+                        <p>An in-depth analysis of semantic search layouts and how to format articles for AI answer engines.</p>
+                        <a href="#contact" class="blog-link">Read Article <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Blog 2 -->
+                <div class="glass-card blog-card">
+                    <div class="blog-img-wrap">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #090d16, #161e33); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-bullseye" style="font-size: 3.5rem; color: var(--primary);"></i></div>
+                        <span class="blog-tag">Paid Media</span>
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span>July 2, 2026</span>
+                            <span>• 4 Min Read</span>
+                        </div>
+                        <h3>Maximizing ROAS on Meta Campaigns</h3>
+                        <p>How to construct dynamic creative testing frameworks to isolate converting asset angles quickly.</p>
+                        <a href="#contact" class="blog-link">Read Article <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Blog 3 -->
+                <div class="glass-card blog-card">
+                    <div class="blog-img-wrap">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #172554, #1e3a8a); display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-compass-drafting" style="font-size: 3.5rem; color: var(--accent);"></i></div>
+                        <span class="blog-tag">UI/UX Design</span>
+                    </div>
+                    <div class="blog-body">
+                        <div class="blog-meta">
+                            <span>June 28, 2026</span>
+                            <span>• 6 Min Read</span>
+                        </div>
+                        <h3>Conversion Rate Design Mechanics</h3>
+                        <p>A deep look at page speeds, layout spacing, visual cues, and button shapes that increase conversions.</p>
+                        <a href="#contact" class="blog-link">Read Article <i class="fa-solid fa-arrow-right-long"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="section-padding" style="padding-top: 0;">
+        <div class="container">
+            <div class="newsletter-banner" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="newsletter-content">
+                    <h2>Subscribe to Stackly Growth Insights</h2>
+                    <p>Monthly telemetry teardowns, paid bidding tips, and search engine algorithm reports delivered directly to your inbox. Zero spam.</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your work email" aria-label="Work Email Address" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+       FOOTER
+       ========================================== -->
+        
+<footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.webp" alt="Stackly Logo" class="brand-logo-img">
+                </a>
+                <p>Stackly is a high-performance Digital Marketing Agency built to drive growth. We combine SEO optimization, programmatic paid bidding (PPC), conversion engineering (CRO), and user journey analytics to scale platforms globally.</p>
+                <div class="social-icons-footer">
+                    <a href="#" aria-label="Facebook Link"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter X Link"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn Link"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram Link"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="process.html">Process Roadmap</a>
+                    <a href="work.html">Case Portfolios</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Services</h4>
+                <div class="footer-links">
+                    <a href="seo.html">SEO Optimization</a>
+                    <a href="ppc.html">Paid Ads (PPC)</a>
+                    <a href="web-development.html">Web Development</a>
+                    <a href="ui-ux-design.html">UI/UX Design</a>
+                    <a href="ecommerce.html">E-commerce Marketing</a>
+                    <a href="cro.html">Conversion Rate (CRO)</a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem;">Subscribe to receive digital marketing insights and growth updates from our team.</p>
+                <form class="newsletter-form" style="display: flex; gap: 0.5rem; background: var(--bg-tertiary); padding: 0.25rem; border-radius: var(--radius-full); border: 1px solid var(--border-glass); align-items: center;">
+                    <input type="email" placeholder="Your email address" required style="flex-grow: 1; padding: 0.5rem 1rem; color: var(--text-light); font-size: 0.85rem; background: transparent; border: none; outline: none;">
+                    <button type="submit" aria-label="Submit Newsletter" style="width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: var(--bg-primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; border: none; cursor: pointer; transition: background 0.2s;"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Stackly. All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></a>
+
+    <!-- ==========================================
+       JAVASCRIPT SCRIPTS
+       ========================================== -->
+    <!-- GSAP for core smooth charts/timelines -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- AOS for reveal-on-scroll animations -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Init AOS
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-out-cubic'
+        });
+    </script>
+    
+    <!-- Custom JS logic -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# System / IDE
+.gemini/
+.system_generated/
+.agents/
+AGENTS.md
+SKILL.md
+task.md
+walkthrough.md
+implementation_plan.md
+
+# Helper scripts
+init_and_push_new.py
+sync_and_push.py
+download_images.py
