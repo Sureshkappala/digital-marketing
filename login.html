@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
 </head>
-<body style="overflow-y: hidden; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-primary);">
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-primary);">
 
     <div class="preloader">
         <div class="preloader-loader"></div>
@@ -39,7 +39,7 @@
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Access your client portal or marketing dashboard.</p>
         </div>
 
-        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); const r = document.getElementById('role').value; document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block'; setTimeout(() => { window.location.href = (r === 'admin') ? 'admin-dashboard.html' : 'dashboard.html'; }, 1500);">
+        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
                 <div style="position: relative;">
@@ -91,13 +91,7 @@
         </div>
     </div>
 
-    <!-- Theme Switch Button fixed in bottom right -->
-    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 100;">
-        <button class="theme-switch" aria-label="Toggle Theme">
-            <i class="fa-solid fa-moon"></i>
-            <i class="fa-solid fa-sun"></i>
-        </button>
-    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

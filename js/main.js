@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initBackToTop();
     initHeroConsole();
     initRedirectsTo404();
+    initFormInputsValidation();
+    initDashboardMobileSidebar();
 });
 
 /* ==========================================================================
@@ -24,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPreloader() {
     const preloader = document.querySelector('.preloader');
     if (!preloader) return;
+
+    document.body.style.overflowY = 'hidden';
 
     window.addEventListener('load', () => {
         setTimeout(() => {
@@ -167,7 +171,8 @@ function initNavbar() {
         const openMenu = () => {
             navbar.classList.add('active');
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.documentElement.classList.add('menu-open');
+            document.body.classList.add('menu-open');
             
             const drawerHeader = navbar.querySelector('.drawer-header');
             if (drawerHeader) drawerHeader.style.display = 'flex';
@@ -176,7 +181,8 @@ function initNavbar() {
         const closeMenu = () => {
             navbar.classList.remove('active');
             overlay.classList.remove('active');
-            document.body.style.overflow = '';
+            document.documentElement.classList.remove('menu-open');
+            document.body.classList.remove('menu-open');
         };
 
         menuToggle.addEventListener('click', openMenu);
@@ -704,4 +710,156 @@ function initRedirectsTo404() {
             }
         }
     });
+}
+
+function initFormInputsValidation() {
+    // 1. Name fields: restrict to letters and spaces only
+    const nameInputs = document.querySelectorAll('#contact-name, #reg-name');
+    nameInputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^A-Za-z\s\.\']/g, '');
+        });
+    });
+
+    // 2. Phone fields: restrict to digits only
+    const phoneInputs = document.querySelectorAll('#contact-phone, #reg-phone');
+    phoneInputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+    });
+
+    // Helper: validate password complexity (8+ chars, upper, lower, digit, special symbol)
+    const validatePassword = (passVal) => {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._\-#^&+=])[A-Za-z\d@$!%*?&._\-#^&+=]{8,}$/;
+        return regex.test(passVal);
+    };
+
+    // 3. Register form submission intercept
+    const registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nameVal = document.getElementById('reg-name').value.trim();
+            const phoneVal = document.getElementById('reg-phone').value.trim();
+            const passVal = document.getElementById('reg-password').value;
+            const confirmVal = document.getElementById('reg-confirm').value;
+
+            // Letters only validation
+            if (!/^[A-Za-z\s\.\']+$/.test(nameVal)) {
+                alert("Full Name must contain letters and spaces only.");
+                return;
+            }
+
+            // Digits only validation
+            if (!/^[0-9]+$/.test(phoneVal)) {
+                alert("Phone Number must contain digits only.");
+                return;
+            }
+
+            // Password complexity check
+            if (!validatePassword(passVal)) {
+                alert("Password must be at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special symbols (@$!%*?&._-#^&+=).");
+                return;
+            }
+
+            // Password matching check
+            if (passVal !== confirmVal) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            // Success: Hide form and show success message
+            registerForm.style.display = 'none';
+            const successMsg = document.getElementById('registerSuccess');
+            if (successMsg) {
+                successMsg.style.display = 'block';
+                successMsg.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2500);
+        });
+    }
+
+    // 4. Login form submission intercept
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const emailVal = document.getElementById('email').value.trim();
+            const passVal = document.getElementById('password').value;
+            const roleVal = document.getElementById('role').value;
+
+            // Password complexity check
+            if (!validatePassword(passVal)) {
+                alert("Password must be at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special symbols (@$!%*?&._-#^&+=).");
+                return;
+            }
+
+            // Success: Hide form and show success message
+            loginForm.style.display = 'none';
+            const successMsg = document.getElementById('loginSuccess');
+            if (successMsg) {
+                successMsg.style.display = 'block';
+                successMsg.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            setTimeout(() => {
+                window.location.href = (roleVal === 'admin') ? 'admin-dashboard.html' : 'dashboard.html';
+            }, 1500);
+        });
+    }
+
+    // 5. Contact form submission intercept
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameVal = document.getElementById('contact-name').value.trim();
+            const phoneVal = document.getElementById('contact-phone').value.trim();
+
+            // Letters only validation
+            if (!/^[A-Za-z\s\.\']+$/.test(nameVal)) {
+                alert("Full Name must contain letters and spaces only.");
+                return;
+            }
+
+            // Digits only validation
+            if (!/^[0-9]+$/.test(phoneVal)) {
+                alert("Phone Number must contain digits only.");
+                return;
+            }
+
+            alert("Thank you! Your message has been sent successfully. One of our growth architects will contact you within 24 hours.");
+            contactForm.reset();
+        });
+    }
+}
+
+// 6. Dashboard Mobile Sidebar Drawer Toggle Logic
+function initDashboardMobileSidebar() {
+    const hamburger = document.querySelector('.db-hamburger');
+    const closeBtn = document.querySelector('.db-sidebar-close');
+    const sidebar = document.querySelector('.db-sidebar');
+    const overlay = document.querySelector('.db-sidebar-overlay');
+
+    if (hamburger && sidebar) {
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+        });
+    }
+
+    const closeSidebar = () => {
+        if (sidebar) sidebar.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (overlay) overlay.addEventListener('click', closeSidebar);
 }
