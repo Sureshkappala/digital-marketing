@@ -785,6 +785,30 @@ body.light .theme-switch .fa-sun { display: block; color: #f59e0b; }
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
+.hero-graphic {
+    position: relative;
+    width: 100%;
+}
+.hero-telemetry-card {
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    box-shadow: var(--shadow-glow-purple);
+    animation: float 6s ease-in-out infinite;
+    background: rgba(17, 24, 39, 0.4);
+    backdrop-filter: blur(12px);
+}
+.hero-telemetry-widgets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+.hero-telemetry-widget {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+}
 
 /* Console Container Glass Frame */
 .hero-console {
@@ -1106,6 +1130,37 @@ body.light .theme-switch .fa-sun { display: block; color: #f59e0b; }
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-top: 2rem;
+}
+.values-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
+}
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.leadership-grid .glass-card {
+    padding: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    border-radius: var(--radius-md);
 }
 .pillar-card {
     display: flex;
@@ -1738,7 +1793,7 @@ body.light .theme-switch .fa-sun { display: block; color: #f59e0b; }
    ========================================================================== */
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
 }
 .tool-card {
@@ -2312,10 +2367,14 @@ body.light .mock-map {
     }
     
     .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-telemetry-card { padding: 1.8rem; }
     .hero-mockup-wrapper { max-width: 500px; margin: 0 auto; }
     
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-visual { max-width: 480px; margin: 0 auto; }
+    .values-container { grid-template-columns: 1fr; gap: 2.5rem; }
+    .leadership-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .grid-2-col { grid-template-columns: 1fr; gap: 2.5rem; }
     
     .why-grid { grid-template-columns: 1fr; gap: 3rem; }
     
@@ -2343,7 +2402,11 @@ body.light .mock-map {
     .hero-content h1 { font-size: 2.2rem; }
     .hero-actions { flex-direction: column; gap: 0.8rem; }
     .hero-stats-quick { flex-direction: column; gap: 1.5rem; }
+    .hero-telemetry-card { padding: 1.2rem; }
+    .hero-telemetry-widgets { grid-template-columns: 1fr; gap: 0.8rem; }
     .about-pillars { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .leadership-grid .glass-card { flex-direction: column; text-align: center; padding: 1.5rem; gap: 1.5rem; }
     .process-timeline { grid-template-columns: 1fr; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-strip-grid { grid-template-columns: 1fr; }
