@@ -2350,6 +2350,8 @@ body.light .mock-map {
         z-index: 100;
         transition: right var(--transition-normal);
         display: flex;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .navbar.active { right: 0; }
     .drawer-header { display: flex; }
