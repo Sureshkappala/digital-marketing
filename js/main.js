@@ -464,7 +464,7 @@ function initForms() {
                         successMsg.style.display = 'none';
                     }, 5000);
                 } else {
-                    alert('Thank you! Your submission was successful.');
+                    showCustomAlert('Thank you! Your submission was successful.', 'success');
                     form.reset();
                 }
             }
@@ -748,25 +748,25 @@ function initFormInputsValidation() {
 
             // Letters only validation
             if (!/^[A-Za-z\s\.\']+$/.test(nameVal)) {
-                alert("Full Name must contain letters and spaces only.");
+                showCustomAlert("Full Name must contain letters and spaces only.");
                 return;
             }
 
             // Digits only validation
             if (!/^[0-9]+$/.test(phoneVal)) {
-                alert("Phone Number must contain digits only.");
+                showCustomAlert("Phone Number must contain digits only.");
                 return;
             }
 
             // Password complexity check
             if (!validatePassword(passVal)) {
-                alert("Password must be at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special symbols (@$!%*?&._-#^&+=).");
+                showCustomAlert("Password must be at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special symbols (@$!%*?&._-#^&+=).");
                 return;
             }
 
             // Password matching check
             if (passVal !== confirmVal) {
-                alert("Passwords do not match.");
+                showCustomAlert("Passwords do not match.");
                 return;
             }
 
@@ -796,7 +796,7 @@ function initFormInputsValidation() {
 
             // Password complexity check
             if (!validatePassword(passVal)) {
-                alert("Password must be at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special symbols (@$!%*?&._-#^&+=).");
+                showCustomAlert("Password must be at least 8 characters long and contain a combination of uppercase letters, lowercase letters, digits, and special symbols (@$!%*?&._-#^&+=).");
                 return;
             }
 
@@ -825,17 +825,17 @@ function initFormInputsValidation() {
 
             // Letters only validation
             if (!/^[A-Za-z\s\.\']+$/.test(nameVal)) {
-                alert("Full Name must contain letters and spaces only.");
+                showCustomAlert("Full Name must contain letters and spaces only.");
                 return;
             }
 
             // Digits only validation
             if (!/^[0-9]+$/.test(phoneVal)) {
-                alert("Phone Number must contain digits only.");
+                showCustomAlert("Phone Number must contain digits only.");
                 return;
             }
 
-            alert("Thank you! Your message has been sent successfully. One of our growth architects will contact you within 24 hours.");
+            showCustomAlert("Thank you! Your message has been sent successfully. One of our growth architects will contact you within 24 hours.", "success");
             contactForm.reset();
         });
     }
@@ -862,4 +862,46 @@ function initDashboardMobileSidebar() {
 
     if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
     if (overlay) overlay.addEventListener('click', closeSidebar);
+}
+
+// 7. Reusable Custom Alert Modal Dialog (Glassmorphism Modal UI)
+function showCustomAlert(message, type = 'error') {
+    if (document.querySelector('.custom-alert-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-alert-overlay';
+    
+    const modal = document.createElement('div');
+    modal.className = 'custom-alert-modal glass-card';
+    
+    const iconClass = type === 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation';
+    const iconColor = type === 'success' ? '#10b981' : '#ef4444';
+    
+    modal.innerHTML = `
+        <div class="custom-alert-icon" style="color: ${iconColor};"><i class="fa-solid ${iconClass}"></i></div>
+        <p class="custom-alert-message">${message}</p>
+        <button class="custom-alert-btn">OK</button>
+    `;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    setTimeout(() => {
+        overlay.classList.add('active');
+        modal.classList.add('active');
+    }, 10);
+    
+    const closeBtn = modal.querySelector('.custom-alert-btn');
+    const closeAlert = () => {
+        overlay.classList.remove('active');
+        modal.classList.remove('active');
+        setTimeout(() => {
+            overlay.remove();
+        }, 300);
+    };
+    
+    closeBtn.addEventListener('click', closeAlert);
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeAlert();
+    });
 }

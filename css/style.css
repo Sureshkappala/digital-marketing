@@ -2619,3 +2619,69 @@ html.menu-open, body.menu-open {
     }
 }
 
+/* Custom Alert Dialog Modal Styles */
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.custom-alert-overlay.active {
+    opacity: 1;
+}
+.custom-alert-modal {
+    background: rgba(17, 24, 39, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), var(--shadow-glow-purple) !important;
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-md) !important;
+    padding: 2.5rem 2rem !important;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    transform: scale(0.85);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.custom-alert-modal.active {
+    transform: scale(1);
+}
+.custom-alert-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+}
+.custom-alert-message {
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+}
+.custom-alert-btn {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 0.6rem 2.5rem !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    border-radius: var(--radius-full) !important;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+}
+.custom-alert-btn:hover {
+    background: var(--accent-hover) !important;
+    transform: translateY(-1px);
+}
+.custom-alert-btn:active {
+    transform: translateY(1px);
+}
+
