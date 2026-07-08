@@ -79,182 +79,83 @@
     <!-- ==========================================
        HERO SECTION (UNIQUE INTERACTIVE COMMAND CENTER CONSOLE)
        ========================================== -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" style="position: relative; overflow: hidden; padding: 10rem 0 6rem 0;">
         <div class="background-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
         </div>
         
         <div class="container">
-            <!-- Command Center Control Console -->
-            <div class="hero-console glass-card" data-aos="fade-up" data-aos-duration="1200">
-                <!-- Console Top Window Bar -->
-                <div class="console-top-bar">
-                    <div class="console-dots">
-                        <span class="console-dot console-dot-red"></span>
-                        <span class="console-dot console-dot-yellow"></span>
-                        <span class="console-dot console-dot-green"></span>
+            <div class="hero-grid" style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem; align-items: center;">
+                <!-- Left Content Column -->
+                <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+                    <span class="badge" style="margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem;"><i class="fa-solid fa-bolt" style="color: var(--accent);"></i> Scalable Growth Engines</span>
+                    <h1 style="font-size: 3.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: var(--text-light);">Engineering Hyper-Growth for <span>High-Scale Brands</span></h1>
+                    <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2.5rem; max-width: 580px;">We combine data-driven search engine dominance (SEO), high-ROAS paid attribution bidding (PPC), and conversion-focused web engineering to scale your digital market share globally.</p>
+                    
+                    <div class="hero-actions" style="display: flex; gap: 1rem; margin-bottom: 3rem;">
+                        <a href="#contact" class="btn btn-primary" style="padding: 0.9rem 2rem; font-size: 1rem; border-radius: var(--radius-sm); font-weight: 700; display: inline-flex; align-items: center; gap: 0.5rem;">Get Free Audit <i class="fa-solid fa-arrow-right"></i></a>
+                        <a href="login.html" class="btn btn-secondary" style="padding: 0.9rem 2rem; font-size: 1rem; border-radius: var(--radius-sm); font-weight: 700;">Client Portal</a>
                     </div>
-                    <div class="console-title">STACKLY CORE OPERATIONS CONTROL PANEL</div>
-                    <div class="console-status"><span class="status-pulse"></span> CONSOLE ONLINE</div>
+                    
+                    <!-- Performance Trust Badges -->
+                    <div class="hero-stats-quick" style="display: flex; gap: 2.5rem; border-top: 1px solid var(--border-glass); padding-top: 2rem;">
+                        <div class="quick-stat">
+                            <h3 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.2rem;">$450K+</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Managed Ad Spend</p>
+                        </div>
+                        <div class="quick-stat">
+                            <h3 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.2rem;">2.4M+</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Organic Clicks</p>
+                        </div>
+                        <div class="quick-stat">
+                            <h3 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 0.2rem;">4.8x</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Average ROAS</p>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Console Layout Grid -->
-                <div class="console-grid">
-                    <!-- Left Sidebar Tab Controllers -->
-                    <div class="console-sidebar">
-                        <div class="console-sidebar-title">CAMPAIGN TARGETS</div>
-                        <button class="console-tab-btn active" data-hero-tab="brand">
-                            <i class="fa-solid fa-crown"></i> 1. Brand Position
-                        </button>
-                        <button class="console-tab-btn" data-hero-tab="seo">
-                            <i class="fa-solid fa-magnifying-glass-chart"></i> 2. SEO Traffic
-                        </button>
-                        <button class="console-tab-btn" data-hero-tab="ppc">
-                            <i class="fa-solid fa-money-bill-trend-up"></i> 3. Paid ROAS Bids
-                        </button>
-                    </div>
-
-                    <!-- Main Dashboard Display (Brand Active by Default) -->
-                    <div class="console-display">
-                        <!-- Tab Content 1: Brand Position -->
-                        <div class="console-content-panel active" id="panel-brand">
-                            <div class="panel-info">
-                                <span class="badge"><i class="fa-solid fa-crown"></i> Brand Power</span>
-                                <h1>Command Attention with <span>Premium Identity</span></h1>
-                                <p>We establish beautiful vector branding guidelines, custom interactive UI layouts, and distinct voice matrix guides that differentiate your business globally.</p>
-                                
-                                <div class="hero-actions">
-                                    <a href="#contact" class="btn btn-accent">Request Style Audit <i class="fa-solid fa-arrow-right"></i></a>
-                                    <a href="#portfolio" class="btn btn-secondary">View Brand Book</a>
-                                </div>
-
-                                <div class="hero-stats-quick">
-                                    <div class="quick-stat">
-                                        <h3 data-target="100" data-suffix="%">0%</h3>
-                                        <p>Style Authenticity</p>
-                                    </div>
-                                    <div class="quick-stat">
-                                        <h3 data-target="2" data-suffix=".5x">0x</h3>
-                                        <p>Audience Trust</p>
-                                    </div>
-                                    <div class="quick-stat">
-                                        <h3 data-target="15" data-suffix="+">0+</h3>
-                                        <p>Design Honors</p>
-                                    </div>
-                                </div>
+                
+                <!-- Right Graphic Column -->
+                <div class="hero-graphic" data-aos="fade-left" data-aos-duration="1200" style="position: relative;">
+                    <div class="glass-card" style="padding: 2.5rem; border-radius: var(--radius-md); border-color: rgba(139, 92, 246, 0.25); box-shadow: var(--shadow-glow-purple); animation: float 6s ease-in-out infinite; background: rgba(17, 24, 39, 0.4); backdrop-filter: blur(12px);">
+                        <!-- SVG Live Graph -->
+                        <div style="margin-bottom: 2rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                                <h4 style="font-size: 0.95rem; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Live Campaign Telemetry</h4>
+                                <span style="font-size: 0.75rem; font-weight: 700; color: #10b981; display: inline-flex; align-items: center; gap: 0.4rem;"><span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; display: inline-block; animation: pulse 2s infinite;"></span> PIPELINE ACTIVE</span>
                             </div>
-                            
-                            <div class="panel-visualization">
-                                <div class="brand-viz-box">
-                                    <svg viewBox="0 0 300 240" class="brand-viz-svg">
-                                        <!-- Geometric lines -->
-                                        <circle cx="150" cy="120" r="80" stroke="var(--primary)" stroke-width="2" stroke-dasharray="6" fill="none" />
-                                        <circle cx="150" cy="120" r="50" stroke="var(--accent)" stroke-width="1.5" fill="none" />
-                                        <!-- Connecting lines -->
-                                        <line x1="70" y1="120" x2="230" y2="120" stroke="var(--border-glass)" stroke-width="1" />
-                                        <line x1="150" y1="40" x2="150" y2="200" stroke="var(--border-glass)" stroke-width="1" />
-                                        <!-- Core Nodes -->
-                                        <circle cx="150" cy="120" r="10" fill="var(--gradient-rainbow)" />
-                                        <circle cx="150" cy="40" r="6" fill="var(--primary)" />
-                                        <circle cx="150" cy="200" r="6" fill="var(--primary)" />
-                                        <circle cx="70" cy="120" r="6" fill="var(--accent)" />
-                                        <circle cx="230" cy="120" r="6" fill="var(--accent)" />
-                                        
-                                        <!-- Typography Mockup -->
-                                        <text x="150" y="20" class="brand-text-node" text-anchor="middle">STACKLY DESIGN SYSTEM</text>
-                                    </svg>
-                                </div>
-                            </div>
+                            <!-- Telemetry Wave SVG -->
+                            <svg viewBox="0 0 400 150" style="width: 100%; height: auto; overflow: visible;">
+                                <defs>
+                                    <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="var(--primary)" />
+                                        <stop offset="100%" stop-color="var(--accent)" />
+                                    </linearGradient>
+                                    <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.25" />
+                                        <stop offset="100%" stop-color="var(--primary)" stop-opacity="0" />
+                                    </linearGradient>
+                                </defs>
+                                <line x1="0" y1="30" x2="400" y2="30" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                                <line x1="0" y1="75" x2="400" y2="75" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                                <line x1="0" y1="120" x2="400" y2="120" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                                <path d="M 0 150 L 0 95 Q 50 115 100 85 T 200 65 T 300 95 T 400 45 L 400 150 Z" fill="url(#fillGrad)" />
+                                <path d="M 0 95 Q 50 115 100 85 T 200 65 T 300 95 T 400 45" fill="none" stroke="url(#waveGrad)" stroke-width="3" stroke-linecap="round" style="filter: drop-shadow(0 4px 8px var(--primary-glow));" />
+                                <circle cx="200" cy="65" r="5" fill="#fff" style="filter: drop-shadow(0 0 8px #fff);" />
+                                <circle cx="200" cy="65" r="10" fill="none" stroke="#fff" stroke-width="1.5" style="animation: pulse 2s infinite;" />
+                                <circle cx="400" cy="45" r="5" fill="var(--accent)" style="filter: drop-shadow(0 0 8px var(--accent));" />
+                            </svg>
                         </div>
-
-                        <!-- Tab Content 2: SEO Traffic -->
-                        <div class="console-content-panel" id="panel-seo">
-                            <div class="panel-info">
-                                <span class="badge"><i class="fa-solid fa-magnifying-glass-chart"></i> Search Pipelines</span>
-                                <h1>Secure Authority via <span>Semantic SEO</span></h1>
-                                <p>We map high-intent keyword hubs, restructure page rendering schemas, and automate structured publishing loops that generate constant lead pipelines.</p>
-                                
-                                <div class="hero-actions">
-                                    <a href="#contact" class="btn btn-accent">Claim Keyword Audit <i class="fa-solid fa-magnifying-glass"></i></a>
-                                    <a href="#services" class="btn btn-secondary">SEO Stack</a>
-                                </div>
-
-                                <div class="hero-stats-quick">
-                                    <div class="quick-stat">
-                                        <h3 data-target="310" data-suffix="%">0%</h3>
-                                        <p>Organic Increase</p>
-                                    </div>
-                                    <div class="quick-stat">
-                                        <h3 data-target="45" data-suffix="K+">0K+</h3>
-                                        <p>Ranking Clusters</p>
-                                    </div>
-                                    <div class="quick-stat">
-                                        <h3 data-target="0" data-suffix="USD">0USD</h3>
-                                        <p>Cost Per Click</p>
-                                    </div>
-                                </div>
+                        
+                        <!-- Lower Interactive Widget grid -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;">
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 1rem; border-radius: var(--radius-sm);">
+                                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem;">Bid Efficiency</div>
+                                <div style="font-size: 1.3rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 0.4rem;">98.2% <i class="fa-solid fa-circle-arrow-up" style="color: #10b981; font-size: 0.95rem;"></i></div>
                             </div>
-                            
-                            <div class="panel-visualization">
-                                <div class="seo-viz-box">
-                                    <svg viewBox="0 0 300 240" class="seo-viz-svg">
-                                        <line x1="20" y1="200" x2="280" y2="200" stroke="var(--border-glass)" stroke-width="1.5" />
-                                        <!-- Graph Line -->
-                                        <path d="M 20,180 Q 80,170 140,110 T 260,30" stroke="var(--accent)" stroke-width="3" fill="none" class="graph-path" />
-                                        <!-- Grid nodes -->
-                                        <circle cx="20" cy="180" r="5" fill="var(--accent)" />
-                                        <circle cx="140" cy="110" r="5" fill="var(--accent)" />
-                                        <circle cx="260" cy="30" r="5" fill="var(--accent)" />
-                                        <text x="260" y="20" class="brand-text-node" text-anchor="middle">RANK #1</text>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab Content 3: Paid ROAS Bids -->
-                        <div class="console-content-panel" id="panel-ppc">
-                            <div class="panel-info">
-                                <span class="badge"><i class="fa-solid fa-money-bill-trend-up"></i> ROAS Scale</span>
-                                <h1>Maximize Yield with <span>Smart Ad Spend</span></h1>
-                                <p>We optimize ad segments on Meta and Google using programmatic bidding thresholds, creative split parameters, and real-time audience trackers.</p>
-                                
-                                <div class="hero-actions">
-                                    <a href="#contact" class="btn btn-accent">Launch Paid Audit <i class="fa-solid fa-chart-line"></i></a>
-                                    <a href="#pricing" class="btn btn-secondary">Investment Tiers</a>
-                                </div>
-
-                                <div class="hero-stats-quick">
-                                    <div class="quick-stat">
-                                        <h3 data-target="3" data-suffix=".5x">0x</h3>
-                                        <p>Average ROAS</p>
-                                    </div>
-                                    <div class="quick-stat">
-                                        <h3 data-target="15" data-suffix="M+">0M+</h3>
-                                        <p>Budgets Restructured</p>
-                                    </div>
-                                    <div class="quick-stat">
-                                        <h3 data-target="98" data-suffix="%">0%</h3>
-                                        <p>Lead Quality Metric</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="panel-visualization">
-                                <div class="ppc-viz-box">
-                                    <!-- Funnel visual drawing -->
-                                    <svg viewBox="0 0 300 240" class="ppc-viz-svg">
-                                        <!-- Funnel shape lines -->
-                                        <polygon points="50,40 250,40 200,100 100,100" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.6" />
-                                        <polygon points="100,100 200,100 170,160 130,160" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.8" />
-                                        <polygon points="130,160 170,160 160,210 140,210" stroke="var(--accent)" stroke-width="2" fill="none" />
-                                        
-                                        <!-- Floating bubbles representing incoming traffic converting -->
-                                        <circle cx="150" cy="60" r="12" fill="var(--primary)" opacity="0.4" class="funnel-bubble-1" />
-                                        <circle cx="150" cy="130" r="8" fill="var(--accent)" opacity="0.6" class="funnel-bubble-2" />
-                                        <circle cx="150" cy="185" r="5" fill="var(--accent)" class="funnel-bubble-3" />
-                                    </svg>
-                                </div>
+                            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 1rem; border-radius: var(--radius-sm);">
+                                <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem;">Global CTR</div>
+                                <div style="font-size: 1.3rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 0.4rem;">4.12% <i class="fa-solid fa-circle-arrow-up" style="color: #10b981; font-size: 0.95rem;"></i></div>
                             </div>
                         </div>
                     </div>
