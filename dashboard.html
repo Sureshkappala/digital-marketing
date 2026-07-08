@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stackly Operations Dashboard - Live telemetry overview for SEO volume, Paid Bid ROAS, and custom conversion paths.">
+    <title>Telemetry Dashboard | Stackly Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <style>
+        /* Custom Dashboard Overrides */
+        .db-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+        }
+        .db-sidebar {
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-glass);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 100;
+        }
+        .db-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+        }
+        .db-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+        .db-menu-item:hover, .db-menu-item.active {
+            background: var(--primary-glow);
+            color: var(--primary);
+        }
+        .db-menu-item.active {
+            border-left: 3px solid var(--primary);
+        }
+        .db-main {
+            padding: 2.5rem;
+            overflow-y: auto;
+        }
+        .db-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .db-metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .db-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .db-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .db-panels-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr;
+            gap: 1.5rem;
+        }
+        .chart-svg-container {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: var(--radius-sm);
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        .task-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .task-list-item:last-child {
+            border-bottom: none;
+        }
+        .status-pill {
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-success {
+            background: var(--success-glow);
+            color: var(--success);
+        }
+        .status-pending {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 1024px) {
+            .db-metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .db-panels-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .db-layout {
+                grid-template-columns: 1fr;
+            }
+            .db-sidebar {
+                height: auto;
+                position: static;
+                border-right: none;
+                border-bottom: 1px solid var(--border-glass);
+                padding: 1.5rem;
+            }
+            .db-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                margin-top: 1.5rem;
+            }
+            .db-menu-item {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            .db-metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .db-main {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body style="overflow-y: auto;">
+
+    <!-- PRELOADER -->
+    <div class="preloader">
+        <div class="preloader-loader"></div>
+    </div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <div class="db-layout">
+        <!-- SIDEBAR -->
+        <aside class="db-sidebar">
+            <div>
+                <a href="index.html" class="logo">
+                    <img src="images/logo.webp" alt="Stackly Logo" class="brand-logo-img" style="height: 38px;">
+                </a>
+                
+                <nav class="db-menu">
+                    <div class="db-menu-item active"><i class="fa-solid fa-chart-pie"></i> Overview</div>
+                    <div class="db-menu-item"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Analytics</div>
+                    <div class="db-menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> PPC Campaigns</div>
+                    <div class="db-menu-item"><i class="fa-solid fa-arrows-spin"></i> CRO Telemetry</div>
+                    <a href="index.html" class="db-menu-item" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home Base</a>
+                </nav>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border-glass); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.8rem;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-purple-blue); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">NS</div>
+                    <div>
+                        <h5 style="font-size: 0.85rem; color: var(--text-light); margin: 0;">NovaSaaS</h5>
+                        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Client Account</p>
+                    </div>
+                </div>
+                <a href="login.html" aria-label="Sign Out" style="color: var(--text-muted); transition: color 0.2s;"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+        <!-- MAIN DASHBOARD CONTENT -->
+        <main class="db-main">
+            <!-- Header -->
+            <header class="db-header">
+                <div>
+                    <h1 style="font-size: 1.8rem; margin: 0; color: var(--text-light);">Operations Telemetry <span>Console</span></h1>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.2rem 0 0 0;">Google Search Console & Meta pixel pipelines active.</p>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div class="glass-card" style="padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-calendar-days"></i> Q3 Operations Period
+                    </div>
+                    <button class="theme-switch" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Metrics grid -->
+            <section class="db-metrics-grid" data-aos="fade-up" data-aos-duration="800">
+                <!-- Card 1 -->
+                <div class="db-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Monthly Spend</span>
+                        <i class="fa-solid fa-wallet" style="color: var(--primary);"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">$45,280</h2>
+                    <div style="width: 100%; height: 6px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden;">
+                        <div style="width: 78%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
+                    </div>
+                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.4rem;">78% of ad budget consumed</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="db-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Organic Traffic</span>
+                        <i class="fa-solid fa-magnifying-glass-chart" style="color: var(--accent);"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">142,500</h2>
+                    <span style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle-arrow-up"></i> +24.8% vs last month</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="db-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Conversion Rate</span>
+                        <i class="fa-solid fa-arrows-spin" style="color: var(--accent);"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">4.52%</h2>
+                    <span style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle-arrow-up"></i> Target 4.00% Met</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="db-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Paid ROAS</span>
+                        <i class="fa-solid fa-money-bill-trend-up" style="color: var(--primary);"></i>
+                    </div>
+                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">4.82x</h2>
+                    <span style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle-arrow-up"></i> +15.3% growth</span>
+                </div>
+            </section>
+
+            <!-- Panels grid -->
+            <section class="db-panels-grid">
+                <!-- Left panel: Traffic overview -->
+                <div class="db-card" data-aos="fade-right" data-aos-duration="1000">
+                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 1.5rem;">Traffic Telemetry Timeline</h3>
+                    
+                    <div class="chart-svg-container">
+                        <svg viewBox="0 0 500 200" style="width: 100%; height: 100%; overflow: visible;">
+                            <!-- Grid lines -->
+                            <line x1="50" y1="30" x2="480" y2="30" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                            <line x1="50" y1="80" x2="480" y2="80" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                            <line x1="50" y1="130" x2="480" y2="130" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
+                            <line x1="50" y1="170" x2="480" y2="170" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"></line>
+                            
+                            <!-- Graph line path -->
+                            <path d="M 50,150 Q 120,130 190,90 T 330,70 T 480,42" fill="none" stroke="var(--accent)" stroke-width="3" style="filter: drop-shadow(0 0 4px var(--accent));"></path>
+                            <path d="M 50,165 Q 120,150 190,115 T 330,95 T 480,68" fill="none" stroke="var(--primary)" stroke-width="2.5" style="filter: drop-shadow(0 0 4px var(--primary));"></path>
+                            
+                            <!-- Labels -->
+                            <text x="45" y="174" fill="var(--text-muted)" font-size="9" text-anchor="end">0k</text>
+                            <text x="45" y="134" fill="var(--text-muted)" font-size="9" text-anchor="end">50k</text>
+                            <text x="45" y="84" fill="var(--text-muted)" font-size="9" text-anchor="end">100k</text>
+                            <text x="45" y="34" fill="var(--text-muted)" font-size="9" text-anchor="end">150k</text>
+                            
+                            <text x="50" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 1</text>
+                            <text x="190" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 2</text>
+                            <text x="330" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 3</text>
+                            <text x="480" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 4</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Right panel: Active checklists -->
+                <div class="db-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 1.5rem;">Operations Checklist</h3>
+                    
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="task-list-item">
+                            <div>
+                                <h4 style="font-size: 0.9rem; color: var(--text-light); margin: 0;">Restructure CRO Funnel</h4>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Optimize checkouts and CTA positions</p>
+                            </div>
+                            <span class="status-pill status-success"><i class="fa-solid fa-circle-check"></i> Active</span>
+                        </div>
+                        <div class="task-list-item">
+                            <div>
+                                <h4 style="font-size: 0.9rem; color: var(--text-light); margin: 0;">Keywords Expansion</h4>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Map high-intent transactional search terms</p>
+                            </div>
+                            <span class="status-pill status-success"><i class="fa-solid fa-circle-check"></i> Active</span>
+                        </div>
+                        <div class="task-list-item">
+                            <div>
+                                <h4 style="font-size: 0.9rem; color: var(--text-light); margin: 0;">Paid Ad Bid Adjustments</h4>
+                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Scrub negative matches & set bid caps</p>
+                            </div>
+                            <span class="status-pill status-pending"><i class="fa-solid fa-circle-notch fa-spin"></i> Queue</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

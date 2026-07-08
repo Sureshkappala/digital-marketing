@@ -34,7 +34,7 @@
             <p style="color: var(--text-muted); font-size: 0.9rem;">Sign in to view real-time attribution reports.</p>
         </div>
 
-        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block';">
+        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block'; setTimeout(() => { window.location.href='dashboard.html'; }, 1500);">
             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
                 <div style="position: relative;">
@@ -65,10 +65,11 @@
             <i class="fa-solid fa-circle-check" style="font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem;"></i>
             <h3 style="color: var(--text-light); font-size: 1.3rem;">Authentication Approved</h3>
             <p style="color: var(--text-muted); margin: 0.5rem 0 1.5rem 0; font-size: 0.9rem;">Redirecting to your Stackly Analytics panel...</p>
-            <a href="index.html" class="btn btn-secondary" style="display: inline-block;">Return Home</a>
+            <a href="dashboard.html" class="btn btn-primary" style="display: inline-block;">Go to Dashboard</a>
         </div>
 
         <div style="margin-top: 2rem; border-top: 1px solid var(--border-glass); padding-top: 1.5rem;">
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.5rem;">Don't have an account? <a href="register.html" style="color: var(--accent); font-weight: 600;">Register here</a></p>
             <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1rem;">Or sign in using SSO</p>
             <div style="display: flex; justify-content: center; gap: 1rem;">
                 <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-google"></i></a>
