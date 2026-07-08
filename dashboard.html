@@ -9,152 +9,363 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <style>
-        /* Custom Dashboard Overrides */
-        .db-layout {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            min-height: 100vh;
-            background-color: var(--bg-primary);
+        /* Custom Dashboard Styling to Match Reference */
+        body {
+            background-color: #0b0f17;
+            color: #f3f4f6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
         }
+        .db-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styling */
         .db-sidebar {
-            background-color: var(--bg-secondary);
-            border-right: 1px solid var(--border-glass);
-            padding: 2rem 1.5rem;
+            background-color: #0e1320;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 1.8rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            z-index: 100;
         }
-        .db-menu {
+        .sidebar-logo {
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .sidebar-logo img {
+            height: 38px;
+            filter: brightness(0) invert(1);
+        }
+        .sidebar-section-title {
+            color: #4b5563;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .sidebar-menu {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            margin-top: 2.5rem;
+            gap: 0.4rem;
         }
-        .db-menu-item {
+        .sidebar-link {
             display: flex;
             align-items: center;
             gap: 1rem;
             padding: 0.8rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
             border-radius: var(--radius-sm);
-            color: var(--text-muted);
-            font-weight: 500;
             font-size: 0.95rem;
-            transition: all var(--transition-fast);
-            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
         }
-        .db-menu-item:hover, .db-menu-item.active {
-            background: var(--primary-glow);
-            color: var(--primary);
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
         }
-        .db-menu-item.active {
-            border-left: 3px solid var(--primary);
+        .sidebar-link.active {
+            border-left: 3px solid #10b981;
+            padding-left: calc(1rem - 3px);
         }
+        .signout-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+        }
+        .signout-btn:hover {
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        /* Main Content Styling */
         .db-main {
-            padding: 2.5rem;
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-height: 100vh;
             overflow-y: auto;
         }
-        .db-header {
+        
+        /* Top Navigation Header */
+        .db-top-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            gap: 1.5rem;
-            flex-wrap: wrap;
         }
-        .db-metrics-grid {
+        .top-nav-title {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .user-profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+        }
+        .user-info {
+            text-align: right;
+        }
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin: 0;
+        }
+        .user-role {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Hero Text block */
+        .db-welcome-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 0.5rem 0;
+        }
+        .db-welcome-hero p {
+            color: #9ca3af;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Stats Cards Row */
+        .db-stats-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            margin-bottom: 2.5rem;
         }
-        .db-card {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-glass);
-            border-radius: var(--radius-md);
+        .stat-card {
+            background-color: #121824;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .db-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
+        .stat-label {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
         }
-        .db-panels-grid {
-            display: grid;
-            grid-template-columns: 2fr 1.2fr;
-            gap: 1.5rem;
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
         }
-        .chart-svg-container {
-            width: 100%;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.01);
-            border-radius: var(--radius-sm);
-            margin-top: 1rem;
-            overflow: hidden;
-        }
-        .task-list-item {
+        .stat-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .icon-spend { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .icon-conv { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .icon-clicks { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
+        .icon-roas { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+
+        /* Dashboard Grid Layout (Left tables, right widgets) */
+        .db-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 1.8rem;
+        }
+        .grid-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        
+        /* Dashboard Cards / Boxes */
+        .panel-box {
+            background-color: #121824;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1.8rem;
+        }
+        .panel-box-header {
+            display: flex;
             justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border-glass);
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
-        .task-list-item:last-child {
-            border-bottom: none;
+        .panel-box-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
         }
-        .status-pill {
-            padding: 0.25rem 0.6rem;
-            border-radius: var(--radius-full);
-            font-size: 0.75rem;
+        .panel-box-link {
+            font-size: 0.85rem;
+            color: #10b981;
+            text-decoration: none;
             font-weight: 600;
         }
-        .status-success {
-            background: var(--success-glow);
-            color: var(--success);
+
+        /* Clean Dashboard Tables */
+        .db-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .db-table th {
+            color: #4b5563;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .db-table td {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+        .db-table tr:last-child td {
+            border-bottom: none;
+        }
+        .text-light-value {
+            color: #f3f4f6;
+            font-weight: 600;
+        }
+        
+        /* Status Badges */
+        .badge-status {
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .status-active {
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
         }
         .status-pending {
-            background: var(--accent-glow);
-            color: var(--accent);
+            background: rgba(245, 158, 11, 0.08);
+            color: #f59e0b;
+        }
+        .status-completed {
+            background: rgba(59, 130, 246, 0.08);
+            color: #3b82f6;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 1024px) {
-            .db-metrics-grid {
+        /* Right Panel Widgets */
+        .right-widget {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .widget-metric-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .widget-metric-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+        .widget-progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .widget-progress-fill {
+            height: 100%;
+            background: #10b981;
+            border-radius: 3px;
+        }
+        
+        .keyword-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+        }
+        .keyword-item:last-child {
+            border-bottom: none;
+        }
+        .keyword-name {
+            color: #f3f4f6;
+            font-weight: 500;
+        }
+        .keyword-stats {
+            color: #9ca3af;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 1200px) {
+            .db-stats-row {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .db-panels-grid {
+            .db-grid {
                 grid-template-columns: 1fr;
             }
         }
         @media (max-width: 768px) {
-            .db-layout {
+            .db-container {
                 grid-template-columns: 1fr;
             }
             .db-sidebar {
-                height: auto;
-                position: static;
                 border-right: none;
-                border-bottom: 1px solid var(--border-glass);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
                 padding: 1.5rem;
             }
-            .db-menu {
+            .sidebar-logo {
+                margin-bottom: 0.5rem;
+            }
+            .sidebar-section-title {
+                display: none;
+            }
+            .sidebar-menu {
                 flex-direction: row;
                 flex-wrap: wrap;
-                margin-top: 1.5rem;
-            }
-            .db-menu-item {
-                padding: 0.6rem 0.8rem;
-                font-size: 0.85rem;
-            }
-            .db-metrics-grid {
-                grid-template-columns: 1fr;
+                margin-top: 1rem;
             }
             .db-main {
                 padding: 1.5rem;
+            }
+            .db-stats-row {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -169,163 +380,217 @@
     <div class="custom-cursor"></div>
     <div class="custom-cursor-dot"></div>
 
-    <div class="db-layout">
+    <div class="db-container">
         <!-- SIDEBAR -->
         <aside class="db-sidebar">
             <div>
-                <a href="index.html" class="logo">
-                    <img src="images/logo.webp" alt="Stackly Logo" class="brand-logo-img" style="height: 38px;">
+                <a href="index.html" class="sidebar-logo">
+                    <img src="images/logo.webp" alt="Stackly Logo">
                 </a>
                 
-                <nav class="db-menu">
-                    <div class="db-menu-item active"><i class="fa-solid fa-chart-pie"></i> Overview</div>
-                    <div class="db-menu-item"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Analytics</div>
-                    <div class="db-menu-item"><i class="fa-solid fa-money-bill-trend-up"></i> PPC Campaigns</div>
-                    <div class="db-menu-item"><i class="fa-solid fa-arrows-spin"></i> CRO Telemetry</div>
-                    <a href="index.html" class="db-menu-item" style="text-decoration: none;"><i class="fa-solid fa-house"></i> Home Base</a>
+                <div class="sidebar-section-title">Main</div>
+                <nav class="sidebar-menu">
+                    <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                </nav>
+
+                <div class="sidebar-section-title">Marketing Channels</div>
+                <nav class="sidebar-menu">
+                    <a href="seo.html" class="sidebar-link"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Campaigns</a>
+                    <a href="ppc.html" class="sidebar-link"><i class="fa-solid fa-money-bill-trend-up"></i> PPC Ad Sets</a>
+                </nav>
+
+                <div class="sidebar-section-title">Account</div>
+                <nav class="sidebar-menu">
+                    <a href="contact.html" class="sidebar-link"><i class="fa-solid fa-user"></i> My Profile</a>
+                    <a href="contact.html" class="sidebar-link"><i class="fa-solid fa-headset"></i> Support Desk</a>
                 </nav>
             </div>
             
-            <div style="border-top: 1px solid var(--border-glass); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 0.8rem;">
-                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-purple-blue); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">NS</div>
-                    <div>
-                        <h5 style="font-size: 0.85rem; color: var(--text-light); margin: 0;">NovaSaaS</h5>
-                        <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Client Account</p>
-                    </div>
-                </div>
-                <a href="login.html" aria-label="Sign Out" style="color: var(--text-muted); transition: color 0.2s;"><i class="fa-solid fa-right-from-bracket"></i></a>
-            </div>
+            <a href="login.html" class="signout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
         </aside>
 
-        <!-- MAIN DASHBOARD CONTENT -->
+        <!-- MAIN PANEL -->
         <main class="db-main">
-            <!-- Header -->
-            <header class="db-header">
-                <div>
-                    <h1 style="font-size: 1.8rem; margin: 0; color: var(--text-light);">Operations Telemetry <span>Console</span></h1>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.2rem 0 0 0;">Google Search Console & Meta pixel pipelines active.</p>
-                </div>
+            <!-- Top Nav -->
+            <div class="db-top-nav">
+                <h4 class="top-nav-title">Operations Control Board</h4>
                 
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <div class="glass-card" style="padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-solid fa-calendar-days"></i> Q3 Operations Period
+                <div class="user-profile-badge">
+                    <div class="user-info">
+                        <h5 class="user-name">Richard Henderson</h5>
+                        <p class="user-role">Client Member</p>
                     </div>
-                    <button class="theme-switch" aria-label="Toggle Theme">
-                        <i class="fa-solid fa-moon"></i>
-                        <i class="fa-solid fa-sun"></i>
-                    </button>
+                    <div class="user-avatar">RH</div>
                 </div>
-            </header>
+            </div>
 
-            <!-- Metrics grid -->
-            <section class="db-metrics-grid" data-aos="fade-up" data-aos-duration="800">
-                <!-- Card 1 -->
-                <div class="db-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Monthly Spend</span>
-                        <i class="fa-solid fa-wallet" style="color: var(--primary);"></i>
+            <!-- Welcome Hero -->
+            <div class="db-welcome-hero" data-aos="fade-right" data-aos-duration="1000">
+                <h1>Hello, Richard Henderson</h1>
+                <p>Access your campaign performance metrics, active advertising budgets, and attribution files.</p>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="db-stats-row" data-aos="fade-up" data-aos-duration="800">
+                <!-- Stat 1 -->
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Active Spend</div>
+                        <h3 class="stat-value">$45,280</h3>
                     </div>
-                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">$45,280</h2>
-                    <div style="width: 100%; height: 6px; background: var(--bg-tertiary); border-radius: 3px; overflow: hidden;">
-                        <div style="width: 78%; height: 100%; background: var(--primary); border-radius: 3px;"></div>
-                    </div>
-                    <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.4rem;">78% of ad budget consumed</span>
+                    <div class="stat-icon-wrapper icon-spend"><i class="fa-solid fa-wallet"></i></div>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="db-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Organic Traffic</span>
-                        <i class="fa-solid fa-magnifying-glass-chart" style="color: var(--accent);"></i>
+                <!-- Stat 2 -->
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Conversions</div>
+                        <h3 class="stat-value">1,280 Leads</h3>
                     </div>
-                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">142,500</h2>
-                    <span style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle-arrow-up"></i> +24.8% vs last month</span>
+                    <div class="stat-icon-wrapper icon-conv"><i class="fa-solid fa-arrows-spin"></i></div>
                 </div>
-
-                <!-- Card 3 -->
-                <div class="db-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Conversion Rate</span>
-                        <i class="fa-solid fa-arrows-spin" style="color: var(--accent);"></i>
+                <!-- Stat 3 -->
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">SEO Impressions</div>
+                        <h3 class="stat-value">1.42M Clicks</h3>
                     </div>
-                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">4.52%</h2>
-                    <span style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle-arrow-up"></i> Target 4.00% Met</span>
+                    <div class="stat-icon-wrapper icon-clicks"><i class="fa-solid fa-arrow-pointer"></i></div>
                 </div>
-
-                <!-- Card 4 -->
-                <div class="db-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Paid ROAS</span>
-                        <i class="fa-solid fa-money-bill-trend-up" style="color: var(--primary);"></i>
+                <!-- Stat 4 -->
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Campaign ROAS</div>
+                        <h3 class="stat-value">4.82x ROAS</h3>
                     </div>
-                    <h2 style="font-size: 1.8rem; color: var(--text-light); margin-bottom: 0.5rem;">4.82x</h2>
-                    <span style="font-size: 0.75rem; color: var(--success);"><i class="fa-solid fa-circle-arrow-up"></i> +15.3% growth</span>
+                    <div class="stat-icon-wrapper icon-roas"><i class="fa-solid fa-chart-line"></i></div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Panels grid -->
-            <section class="db-panels-grid">
-                <!-- Left panel: Traffic overview -->
-                <div class="db-card" data-aos="fade-right" data-aos-duration="1000">
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 1.5rem;">Traffic Telemetry Timeline</h3>
-                    
-                    <div class="chart-svg-container">
-                        <svg viewBox="0 0 500 200" style="width: 100%; height: 100%; overflow: visible;">
-                            <!-- Grid lines -->
-                            <line x1="50" y1="30" x2="480" y2="30" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
-                            <line x1="50" y1="80" x2="480" y2="80" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
-                            <line x1="50" y1="130" x2="480" y2="130" stroke="rgba(255,255,255,0.05)" stroke-width="1"></line>
-                            <line x1="50" y1="170" x2="480" y2="170" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"></line>
-                            
-                            <!-- Graph line path -->
-                            <path d="M 50,150 Q 120,130 190,90 T 330,70 T 480,42" fill="none" stroke="var(--accent)" stroke-width="3" style="filter: drop-shadow(0 0 4px var(--accent));"></path>
-                            <path d="M 50,165 Q 120,150 190,115 T 330,95 T 480,68" fill="none" stroke="var(--primary)" stroke-width="2.5" style="filter: drop-shadow(0 0 4px var(--primary));"></path>
-                            
-                            <!-- Labels -->
-                            <text x="45" y="174" fill="var(--text-muted)" font-size="9" text-anchor="end">0k</text>
-                            <text x="45" y="134" fill="var(--text-muted)" font-size="9" text-anchor="end">50k</text>
-                            <text x="45" y="84" fill="var(--text-muted)" font-size="9" text-anchor="end">100k</text>
-                            <text x="45" y="34" fill="var(--text-muted)" font-size="9" text-anchor="end">150k</text>
-                            
-                            <text x="50" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 1</text>
-                            <text x="190" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 2</text>
-                            <text x="330" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 3</text>
-                            <text x="480" y="190" fill="var(--text-muted)" font-size="9" text-anchor="middle">Week 4</text>
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Right panel: Active checklists -->
-                <div class="db-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                    <h3 style="font-size: 1.15rem; color: var(--text-light); margin-bottom: 1.5rem;">Operations Checklist</h3>
-                    
-                    <div style="display: flex; flex-direction: column;">
-                        <div class="task-list-item">
-                            <div>
-                                <h4 style="font-size: 0.9rem; color: var(--text-light); margin: 0;">Restructure CRO Funnel</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Optimize checkouts and CTA positions</p>
-                            </div>
-                            <span class="status-pill status-success"><i class="fa-solid fa-circle-check"></i> Active</span>
+            <!-- Main Layout Grid -->
+            <div class="db-grid">
+                <!-- Left Column Boxes -->
+                <div class="grid-left">
+                    <!-- Box 1: Active Campaigns -->
+                    <div class="panel-box" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="panel-box-header">
+                            <h3 class="panel-box-title">Active Campaigns</h3>
+                            <a href="work.html" class="panel-box-link">View All</a>
                         </div>
-                        <div class="task-list-item">
-                            <div>
-                                <h4 style="font-size: 0.9rem; color: var(--text-light); margin: 0;">Keywords Expansion</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Map high-intent transactional search terms</p>
-                            </div>
-                            <span class="status-pill status-success"><i class="fa-solid fa-circle-check"></i> Active</span>
+                        
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>Campaign</th>
+                                    <th>Channel</th>
+                                    <th>Target / ROAS</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-light-value">Q3 Brand Lift</td>
+                                    <td>Search (PPC)</td>
+                                    <td>4.2x Target</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-light-value">SaaS Leads Push</td>
+                                    <td>Social Ads</td>
+                                    <td>4.5x Target</td>
+                                    <td><span class="badge-status status-pending">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Box 2: Operations Logs -->
+                    <div class="panel-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                        <div class="panel-box-header">
+                            <h3 class="panel-box-title">Operations Logs & Milestone Tracker</h3>
                         </div>
-                        <div class="task-list-item">
-                            <div>
-                                <h4 style="font-size: 0.9rem; color: var(--text-light); margin: 0;">Paid Ad Bid Adjustments</h4>
-                                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Scrub negative matches & set bid caps</p>
+                        
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>Milestone</th>
+                                    <th>Deliverable</th>
+                                    <th>Completion Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-light-value">SEO Infrastructure Audit</td>
+                                    <td>Link building, Schema setup</td>
+                                    <td>14 Feb 2026</td>
+                                    <td><span class="badge-status status-completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-light-value">Landing Page A/B Testing</td>
+                                    <td>CRO funnel variations</td>
+                                    <td>08 Dec 2025</td>
+                                    <td><span class="badge-status status-completed">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right Column Widgets -->
+                <div class="right-widget">
+                    <!-- Box 3: Performance Metrics -->
+                    <div class="panel-box" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">Performance Metrics</h3>
+                        
+                        <div class="widget-metric-row">
+                            <div class="widget-metric-header">
+                                <span>Page Load Speed (Score)</span>
+                                <span class="text-light-value">92/100</span>
                             </div>
-                            <span class="status-pill status-pending"><i class="fa-solid fa-circle-notch fa-spin"></i> Queue</span>
+                            <div class="widget-progress-bar">
+                                <div class="widget-progress-fill" style="width: 92%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="widget-metric-row">
+                            <div class="widget-metric-header">
+                                <span>Ad Spend Budget (Used)</span>
+                                <span class="text-light-value">78/100</span>
+                            </div>
+                            <div class="widget-progress-bar">
+                                <div class="widget-progress-fill" style="width: 78%; background-color: #3b82f6;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Box 4: Top Performing Keywords -->
+                    <div class="panel-box" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
+                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">Top Performing Keywords</h3>
+                        
+                        <div class="keyword-item">
+                            <span class="keyword-name">"marketing agency"</span>
+                            <span class="keyword-stats">14,200 Monthly</span>
+                        </div>
+                        <div class="keyword-item">
+                            <span class="keyword-name">"seo services"</span>
+                            <span class="keyword-stats">8,500 Monthly</span>
+                        </div>
+                        <div class="keyword-item">
+                            <span class="keyword-name">"conversion rate optimization"</span>
+                            <span class="keyword-stats">4,100 Monthly</span>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </main>
+    </div>
+
+    <!-- Theme Switch Button fixed in bottom right -->
+    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 100;">
+        <button class="theme-switch" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+        </button>
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
