@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stackly Operations Dashboard - Live telemetry overview for SEO volume, Paid Bid ROAS, and custom conversion paths.">
-    <title>Telemetry Dashboard | Stackly Portal</title>
+    <meta name="description" content="SEO Campaign Console - Live telemetry for keyword ranks, search volume, and backlinks.">
+    <title>SEO Dashboard | Stackly Portal</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <style>
-        /* Custom Dashboard Styling to Match Reference */
+        /* Reused Dashboard Styles */
         body {
             background-color: #0b0f17;
             color: #f3f4f6;
@@ -22,8 +22,6 @@
             grid-template-columns: 280px 1fr;
             min-height: 100vh;
         }
-        
-        /* Sidebar Styling */
         .db-sidebar {
             background-color: #0e1320;
             border-right: 1px solid rgba(255, 255, 255, 0.05);
@@ -88,8 +86,6 @@
         .signout-btn:hover {
             background: rgba(239, 68, 68, 0.08);
         }
-
-        /* Main Content Styling */
         .db-main {
             padding: 2.5rem 3rem;
             display: flex;
@@ -98,8 +94,6 @@
             max-height: 100vh;
             overflow-y: auto;
         }
-        
-        /* Top Navigation Header */
         .db-top-nav {
             display: flex;
             justify-content: space-between;
@@ -141,8 +135,6 @@
             color: #6b7280;
             margin: 0;
         }
-
-        /* Hero Text block */
         .db-welcome-hero h1 {
             font-size: 2.2rem;
             font-weight: 700;
@@ -154,8 +146,6 @@
             font-size: 1rem;
             margin: 0;
         }
-
-        /* Stats Cards Row */
         .db-stats-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -197,8 +187,6 @@
         .icon-conv { background: rgba(16, 185, 129, 0.1); color: #10b981; }
         .icon-clicks { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
         .icon-roas { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-
-        /* Dashboard Grid Layout (Left tables, right widgets) */
         .db-grid {
             display: grid;
             grid-template-columns: 1.8fr 1fr;
@@ -209,8 +197,6 @@
             flex-direction: column;
             gap: 1.8rem;
         }
-        
-        /* Dashboard Cards / Boxes */
         .panel-box {
             background-color: #121824;
             border: 1px solid rgba(255, 255, 255, 0.03);
@@ -229,14 +215,6 @@
             color: #fff;
             margin: 0;
         }
-        .panel-box-link {
-            font-size: 0.85rem;
-            color: #10b981;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Clean Dashboard Tables */
         .db-table {
             width: 100%;
             border-collapse: collapse;
@@ -263,28 +241,14 @@
             color: #f3f4f6;
             font-weight: 600;
         }
-        
-        /* Status Badges */
         .badge-status {
             padding: 0.25rem 0.6rem;
             border-radius: 4px;
             font-size: 0.75rem;
             font-weight: 700;
         }
-        .status-active {
-            background: rgba(16, 185, 129, 0.08);
-            color: #10b981;
-        }
-        .status-pending {
-            background: rgba(245, 158, 11, 0.08);
-            color: #f59e0b;
-        }
-        .status-completed {
-            background: rgba(59, 130, 246, 0.08);
-            color: #3b82f6;
-        }
-
-        /* Right Panel Widgets */
+        .status-active { background: rgba(16, 185, 129, 0.08); color: #10b981; }
+        .status-completed { background: rgba(59, 130, 246, 0.08); color: #3b82f6; }
         .right-widget {
             display: flex;
             flex-direction: column;
@@ -313,66 +277,23 @@
             background: #10b981;
             border-radius: 3px;
         }
-        
-        .keyword-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 0.9rem;
-        }
-        .keyword-item:last-child {
-            border-bottom: none;
-        }
-        .keyword-name {
-            color: #f3f4f6;
-            font-weight: 500;
-        }
-        .keyword-stats {
-            color: #9ca3af;
-        }
-
-        /* Responsive Layouts */
         @media (max-width: 1200px) {
-            .db-stats-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .db-grid {
-                grid-template-columns: 1fr;
-            }
+            .db-stats-row { grid-template-columns: repeat(2, 1fr); }
+            .db-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .db-container {
-                grid-template-columns: 1fr;
-            }
-            .db-sidebar {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-                padding: 1.5rem;
-            }
-            .sidebar-logo {
-                margin-bottom: 0.5rem;
-            }
-            .sidebar-section-title {
-                display: none;
-            }
-            .sidebar-menu {
-                flex-direction: row;
-                flex-wrap: wrap;
-                margin-top: 1rem;
-            }
-            .db-main {
-                padding: 1.5rem;
-            }
-            .db-stats-row {
-                grid-template-columns: 1fr;
-            }
+            .db-container { grid-template-columns: 1fr; }
+            .db-sidebar { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem; }
+            .sidebar-logo { margin-bottom: 0.5rem; }
+            .sidebar-section-title { display: none; }
+            .sidebar-menu { flex-direction: row; flex-wrap: wrap; margin-top: 1rem; }
+            .db-main { padding: 1.5rem; }
+            .db-stats-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body style="overflow-y: auto;">
+<body>
 
-    <!-- PRELOADER -->
     <div class="preloader">
         <div class="preloader-loader"></div>
     </div>
@@ -390,12 +311,12 @@
                 
                 <div class="sidebar-section-title">Main</div>
                 <nav class="sidebar-menu">
-                    <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                    <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
                 </nav>
 
                 <div class="sidebar-section-title">Marketing Channels</div>
                 <nav class="sidebar-menu">
-                    <a href="seo-dashboard.html" class="sidebar-link"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Campaigns</a>
+                    <a href="seo-dashboard.html" class="sidebar-link active"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Campaigns</a>
                     <a href="ppc-dashboard.html" class="sidebar-link"><i class="fa-solid fa-money-bill-trend-up"></i> PPC Ad Sets</a>
                 </nav>
 
@@ -411,9 +332,8 @@
 
         <!-- MAIN PANEL -->
         <main class="db-main">
-            <!-- Top Nav -->
             <div class="db-top-nav">
-                <h4 class="top-nav-title">Operations Control Board</h4>
+                <h4 class="top-nav-title">SEO Operations Board</h4>
                 
                 <div class="user-profile-badge">
                     <div class="user-info">
@@ -424,160 +344,105 @@
                 </div>
             </div>
 
-            <!-- Welcome Hero -->
             <div class="db-welcome-hero" data-aos="fade-right" data-aos-duration="1000">
-                <h1>Hello, Richard Henderson</h1>
-                <p>Access your campaign performance metrics, active advertising budgets, and attribution files.</p>
+                <h1>SEO Campaign Insights</h1>
+                <p>Track organic search visibility, keyword telemetry, and link building milestones.</p>
             </div>
 
             <!-- Stats Row -->
             <div class="db-stats-row" data-aos="fade-up" data-aos-duration="800">
-                <!-- Stat 1 -->
                 <div class="stat-card">
                     <div>
-                        <div class="stat-label">Active Spend</div>
-                        <h3 class="stat-value">$45,280</h3>
-                    </div>
-                    <div class="stat-icon-wrapper icon-spend"><i class="fa-solid fa-wallet"></i></div>
-                </div>
-                <!-- Stat 2 -->
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-label">Conversions</div>
-                        <h3 class="stat-value">1,280 Leads</h3>
-                    </div>
-                    <div class="stat-icon-wrapper icon-conv"><i class="fa-solid fa-arrows-spin"></i></div>
-                </div>
-                <!-- Stat 3 -->
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-label">SEO Impressions</div>
-                        <h3 class="stat-value">1.42M Clicks</h3>
+                        <div class="stat-label">Organic Clicks</div>
+                        <h3 class="stat-value">142.5K</h3>
                     </div>
                     <div class="stat-icon-wrapper icon-clicks"><i class="fa-solid fa-arrow-pointer"></i></div>
                 </div>
-                <!-- Stat 4 -->
                 <div class="stat-card">
                     <div>
-                        <div class="stat-label">Campaign ROAS</div>
-                        <h3 class="stat-value">4.82x ROAS</h3>
+                        <div class="stat-label">Domain Rating</div>
+                        <h3 class="stat-value">DR 58</h3>
                     </div>
-                    <div class="stat-icon-wrapper icon-roas"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="stat-icon-wrapper icon-spend"><i class="fa-solid fa-shield-halved"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Keywords Ranked</div>
+                        <h3 class="stat-value">1,420</h3>
+                    </div>
+                    <div class="stat-icon-wrapper icon-conv"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Total Backlinks</div>
+                        <h3 class="stat-value">24.5K</h3>
+                    </div>
+                    <div class="stat-icon-wrapper icon-roas"><i class="fa-solid fa-link"></i></div>
                 </div>
             </div>
 
-            <!-- Main Layout Grid -->
+            <!-- Layout Grid -->
             <div class="db-grid">
-                <!-- Left Column Boxes -->
                 <div class="grid-left">
-                    <!-- Box 1: Active Campaigns -->
                     <div class="panel-box" data-aos="fade-up" data-aos-duration="1000">
                         <div class="panel-box-header">
-                            <h3 class="panel-box-title">Active Campaigns</h3>
-                            <a href="work.html" class="panel-box-link">View All</a>
+                            <h3 class="panel-box-title">Target Keywords</h3>
                         </div>
-                        
                         <table class="db-table">
                             <thead>
                                 <tr>
-                                    <th>Campaign</th>
-                                    <th>Channel</th>
-                                    <th>Target / ROAS</th>
-                                    <th>Status</th>
+                                    <th>Keyword</th>
+                                    <th>Search Volume</th>
+                                    <th>Rank Status</th>
+                                    <th>Trend</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-light-value">Q3 Brand Lift</td>
-                                    <td>Search (PPC)</td>
-                                    <td>4.2x Target</td>
-                                    <td><span class="badge-status status-active">Active</span></td>
+                                    <td class="text-light-value">"marketing agency"</td>
+                                    <td>14,200/mo</td>
+                                    <td>#3 (Page 1)</td>
+                                    <td><span class="badge-status status-active">+3 positions</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-light-value">SaaS Leads Push</td>
-                                    <td>Social Ads</td>
-                                    <td>4.5x Target</td>
-                                    <td><span class="badge-status status-pending">Pending</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <!-- Box 2: Operations Logs -->
-                    <div class="panel-box" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <div class="panel-box-header">
-                            <h3 class="panel-box-title">Operations Logs & Milestone Tracker</h3>
-                        </div>
-                        
-                        <table class="db-table">
-                            <thead>
-                                <tr>
-                                    <th>Milestone</th>
-                                    <th>Deliverable</th>
-                                    <th>Completion Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-light-value">SEO Infrastructure Audit</td>
-                                    <td>Link building, Schema setup</td>
-                                    <td>14 Feb 2026</td>
-                                    <td><span class="badge-status status-completed">Completed</span></td>
+                                    <td class="text-light-value">"seo services"</td>
+                                    <td>8,500/mo</td>
+                                    <td>#5 (Page 1)</td>
+                                    <td><span class="badge-status status-active">+2 positions</span></td>
                                 </tr>
                                 <tr>
-                                    <td class="text-light-value">Landing Page A/B Testing</td>
-                                    <td>CRO funnel variations</td>
-                                    <td>08 Dec 2025</td>
-                                    <td><span class="badge-status status-completed">Completed</span></td>
+                                    <td class="text-light-value">"cro optimization"</td>
+                                    <td>2,400/mo</td>
+                                    <td>#8 (Page 1)</td>
+                                    <td><span class="badge-status status-completed">Stable</span></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Right Column Widgets -->
                 <div class="right-widget">
-                    <!-- Box 3: Performance Metrics -->
                     <div class="panel-box" data-aos="fade-left" data-aos-duration="1000">
-                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">Performance Metrics</h3>
+                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">SEO Optimization Checks</h3>
                         
                         <div class="widget-metric-row">
                             <div class="widget-metric-header">
-                                <span>Page Load Speed (Score)</span>
-                                <span class="text-light-value">92/100</span>
+                                <span>Indexation Score</span>
+                                <span class="text-light-value">98/100</span>
                             </div>
                             <div class="widget-progress-bar">
-                                <div class="widget-progress-fill" style="width: 92%;"></div>
+                                <div class="widget-progress-fill" style="width: 98%;"></div>
                             </div>
                         </div>
                         
                         <div class="widget-metric-row">
                             <div class="widget-metric-header">
-                                <span>Ad Spend Budget (Used)</span>
-                                <span class="text-light-value">78/100</span>
+                                <span>Mobile Compatibility</span>
+                                <span class="text-light-value">100/100</span>
                             </div>
                             <div class="widget-progress-bar">
-                                <div class="widget-progress-fill" style="width: 78%; background-color: #3b82f6;"></div>
+                                <div class="widget-progress-fill" style="width: 100%; background-color: #06b6d4;"></div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Box 4: Top Performing Keywords -->
-                    <div class="panel-box" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="100">
-                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">Top Performing Keywords</h3>
-                        
-                        <div class="keyword-item">
-                            <span class="keyword-name">"marketing agency"</span>
-                            <span class="keyword-stats">14,200 Monthly</span>
-                        </div>
-                        <div class="keyword-item">
-                            <span class="keyword-name">"seo services"</span>
-                            <span class="keyword-stats">8,500 Monthly</span>
-                        </div>
-                        <div class="keyword-item">
-                            <span class="keyword-name">"conversion rate optimization"</span>
-                            <span class="keyword-stats">4,100 Monthly</span>
                         </div>
                     </div>
                 </div>
