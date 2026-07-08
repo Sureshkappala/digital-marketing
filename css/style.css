@@ -2421,6 +2421,12 @@ body.light .mock-map {
     .grid-4-col {
         grid-template-columns: 1fr !important;
     }
+    .db-table {
+        display: block !important;
+        overflow-x: auto !important;
+        width: 100% !important;
+        white-space: nowrap !important;
+    }
 }
 
 @media (max-width: 576px) {
