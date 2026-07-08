@@ -661,7 +661,16 @@ function initRedirectsTo404() {
             const isDashboardPlaceholderLink = 
                 (link.closest('.panel-box') && link.classList.contains('panel-box-link') && (href === '#' || href === 'work.html'));
 
-            if (isSocial || isForgotPassword || isDashboardPlaceholderLink) {
+            // Check if it is a "Read Details" or "Read Article" link
+            const isReadLink = 
+                link.textContent.toLowerCase().includes('read details') ||
+                link.textContent.toLowerCase().includes('read article') ||
+                link.textContent.toLowerCase().includes('read case study') ||
+                link.textContent.toLowerCase().includes('read more') ||
+                link.classList.contains('blog-link') ||
+                link.classList.contains('read-details');
+
+            if (isSocial || isForgotPassword || isDashboardPlaceholderLink || isReadLink) {
                 e.preventDefault();
                 window.location.href = '404.html';
                 return;
@@ -685,9 +694,13 @@ function initRedirectsTo404() {
                 return;
             }
             
-            // If button is inside a form in dashboard contexts (e.g. Save Profile, Change Password, Submit Ticket, Onboard Brand, etc.)
+            // If button contains "Read Details", "Read Article", or "Read More"
+            const btnText = btn.textContent.toLowerCase();
+            const isReadBtn = btnText.includes('read details') || btnText.includes('read article') || btnText.includes('read case study') || btnText.includes('read more') || btn.classList.contains('read-details');
+
+            // If button is inside a form in dashboard contexts or is a Read button
             const isInDashboard = document.querySelector('.db-container') !== null;
-            if (isInDashboard) {
+            if (isInDashboard || isReadBtn) {
                 e.preventDefault();
                 window.location.href = '404.html';
             }
