@@ -2680,6 +2680,8 @@ html.menu-open, body.menu-open {
 
     body .db-main {
         padding: 1.5rem !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
     
     body .db-stats-row {
