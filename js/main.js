@@ -843,25 +843,41 @@ function initFormInputsValidation() {
 
 // 6. Dashboard Mobile Sidebar Drawer Toggle Logic
 function initDashboardMobileSidebar() {
-    const hamburger = document.querySelector('.db-hamburger');
-    const closeBtn = document.querySelector('.db-sidebar-close');
+    const topNav = document.querySelector('.db-top-nav');
     const sidebar = document.querySelector('.db-sidebar');
     const overlay = document.querySelector('.db-sidebar-overlay');
 
-    if (hamburger && sidebar) {
+    if (topNav && sidebar) {
+        // Dynamically inject hamburger button if not present
+        let hamburger = topNav.querySelector('.db-hamburger');
+        if (!hamburger) {
+            hamburger = document.createElement('button');
+            hamburger.className = 'db-hamburger';
+            hamburger.setAttribute('aria-label', 'Toggle Menu');
+            hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            topNav.insertBefore(hamburger, topNav.firstChild);
+        }
+
         hamburger.addEventListener('click', () => {
             sidebar.classList.add('active');
             if (overlay) overlay.classList.add('active');
+            document.documentElement.classList.add('menu-open');
+            document.body.classList.add('menu-open');
         });
     }
 
     const closeSidebar = () => {
         if (sidebar) sidebar.classList.remove('active');
         if (overlay) overlay.classList.remove('active');
+        document.documentElement.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
     };
 
-    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
     if (overlay) overlay.addEventListener('click', closeSidebar);
+    
+    // Fallback: attach to close button if present in markup
+    const closeBtn = document.querySelector('.db-sidebar-close');
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
 }
 
 // 7. Reusable Custom Alert Modal Dialog (Glassmorphism Modal UI)
