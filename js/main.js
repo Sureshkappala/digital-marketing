@@ -612,19 +612,17 @@ function initHeroConsole() {
         });
     });
 
-    // Run hero reveal animations on window load
-    window.addEventListener('load', () => {
-        if (typeof gsap !== 'undefined') {
-            gsap.set('.console-sidebar', { x: -30, opacity: 0 });
-            gsap.set('.console-display', { scale: 0.97, opacity: 0 });
-            gsap.set('.hero .badge', { y: 15, opacity: 0 });
-            
-            const tl = gsap.timeline({ delay: 0.9 });
-            tl.to('.console-sidebar', { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out' })
-              .to('.console-display', { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.5')
-              .to('.hero .badge', { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }, '-=0.4');
-        }
-    });
+    // Run hero reveal animations immediately
+    if (typeof gsap !== 'undefined') {
+        gsap.set('.console-sidebar', { x: -30, opacity: 0 });
+        gsap.set('.console-display', { scale: 0.97, opacity: 0 });
+        gsap.set('.hero .badge', { y: 15, opacity: 0 });
+        
+        const tl = gsap.timeline({ delay: 0.2 });
+        tl.to('.console-sidebar', { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out' })
+          .to('.console-display', { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.5')
+          .to('.hero .badge', { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }, '-=0.4');
+    }
 }
 
 /* ==========================================================================

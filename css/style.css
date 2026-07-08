@@ -40,8 +40,11 @@
     .console-grid {
         grid-template-columns: 1fr;
         min-height: auto;
+        display: flex;
+        flex-direction: column;
     }
     .console-sidebar {
+        order: 1;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -57,6 +60,7 @@
         flex-grow: 0;
     }
     .console-display {
+        order: 2;
         padding: 1.8rem;
     }
     .console-content-panel {
