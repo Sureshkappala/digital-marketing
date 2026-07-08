@@ -39,6 +39,7 @@
     /* Interactive Console Responsiveness */
     .console-grid {
         grid-template-columns: 1fr;
+        min-height: auto;
     }
     .console-sidebar {
         flex-direction: row;
@@ -47,12 +48,13 @@
         padding: 1rem;
         border-right: none;
         border-bottom: 1px solid var(--border-glass);
+        gap: 0.5rem;
     }
     .console-tab-btn {
-        padding: 0.6rem 1rem;
+        padding: 0.8rem 1.2rem;
         font-size: 0.85rem;
-        justify-content: center;
-        flex-grow: 1;
+        justify-content: flex-start;
+        flex-grow: 0;
     }
     .console-display {
         padding: 1.8rem;
@@ -104,6 +106,11 @@
     .console-sidebar {
         flex-direction: column;
         width: 100%;
+        align-items: stretch;
+    }
+    .console-tab-btn {
+        width: 100%;
+        box-sizing: border-box;
     }
     .panel-info h1 { font-size: 1.8rem; }
     .hero-actions { flex-direction: column; gap: 0.8rem; width: 100%; }
