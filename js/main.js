@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initGlowEffects();
     initBackToTop();
     initHeroConsole();
+    initRedirectsTo404();
 });
 
 /* ==========================================================================
@@ -622,6 +623,74 @@ function initHeroConsole() {
             tl.to('.console-sidebar', { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out' })
               .to('.console-display', { scale: 1, opacity: 1, duration: 0.7, ease: 'power3.out' }, '-=0.5')
               .to('.hero .badge', { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out' }, '-=0.4');
+        }
+    });
+}
+
+/* ==========================================================================
+   19. MOCK REDIRECTS FOR UNIMPLEMENTED ACTIONS (404 ROUTING)
+   ========================================================================== */
+function initRedirectsTo404() {
+    document.addEventListener('click', (e) => {
+        // 1. Intercept all social media link clicks and Forgot Password links
+        const link = e.target.closest('a');
+        if (link) {
+            const href = link.getAttribute('href');
+            const ariaLabel = link.getAttribute('aria-label') || '';
+            const innerHTML = link.innerHTML;
+            
+            // Check if it is a social media link
+            const isSocial = 
+                link.closest('.social-icons-footer') || 
+                ariaLabel.toLowerCase().includes('facebook') || 
+                ariaLabel.toLowerCase().includes('twitter') || 
+                ariaLabel.toLowerCase().includes('instagram') || 
+                ariaLabel.toLowerCase().includes('linkedin') ||
+                innerHTML.includes('fa-facebook') ||
+                innerHTML.includes('fa-x-twitter') ||
+                innerHTML.includes('fa-linkedin') ||
+                innerHTML.includes('fa-instagram') ||
+                innerHTML.includes('fa-youtube');
+
+            // Check if it is a "Forgot Password" link
+            const isForgotPassword = 
+                link.textContent.toLowerCase().includes('forgot password') ||
+                (href && href.includes('forgot-password'));
+
+            // Check if it is a dashboard "View All" link targeting unimplemented pages
+            const isDashboardPlaceholderLink = 
+                (link.closest('.panel-box') && link.classList.contains('panel-box-link') && (href === '#' || href === 'work.html'));
+
+            if (isSocial || isForgotPassword || isDashboardPlaceholderLink) {
+                e.preventDefault();
+                window.location.href = '404.html';
+                return;
+            }
+        }
+
+        // 2. Intercept mock submissions/clicks on inner buttons of dashboards
+        const btn = e.target.closest('button, input[type="submit"]');
+        if (btn) {
+            // Ignore theme toggles, menu drawer close/open buttons, slider navigation buttons
+            if (
+                btn.classList.contains('theme-switch') || 
+                btn.classList.contains('drawer-close') || 
+                btn.classList.contains('drawer-toggle') || 
+                btn.closest('.theme-switch') || 
+                btn.closest('.drawer-close') || 
+                btn.closest('.drawer-toggle') || 
+                btn.classList.contains('slider-btn') || 
+                btn.closest('.slider-btn')
+            ) {
+                return;
+            }
+            
+            // If button is inside a form in dashboard contexts (e.g. Save Profile, Change Password, Submit Ticket, Onboard Brand, etc.)
+            const isInDashboard = document.querySelector('.db-container') !== null;
+            if (isInDashboard) {
+                e.preventDefault();
+                window.location.href = '404.html';
+            }
         }
     });
 }
