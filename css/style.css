@@ -736,6 +736,55 @@ body.light .theme-switch .fa-sun { display: block; color: #f59e0b; }
     align-items: center;
     position: relative;
 }
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+}
+.hero-content h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+.hero-content h1 span {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-content p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 580px;
+}
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+.hero-stats-quick {
+    display: flex;
+    gap: 2.5rem;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 2rem;
+}
+.quick-stat h3 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.2rem;
+}
+.quick-stat p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
 
 /* Console Container Glass Frame */
 .hero-console {
