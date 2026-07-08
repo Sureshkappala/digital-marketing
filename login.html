@@ -19,29 +19,49 @@
     <div class="custom-cursor"></div>
     <div class="custom-cursor-dot"></div>
 
+    <!-- Floating Back to Home Button -->
+    <div style="position: absolute; top: 2rem; left: 2rem; z-index: 100;">
+        <a href="index.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; border-radius: var(--radius-sm);"><i class="fa-solid fa-house"></i> Back to Home</a>
+    </div>
+
     <div class="background-shapes" style="position: fixed;">
         <div class="shape shape-1" style="top: 10%; left: 20%; width: 300px; height: 300px; background: var(--primary);"></div>
         <div class="shape shape-2" style="bottom: 10%; right: 20%; width: 400px; height: 400px; background: var(--accent);"></div>
     </div>
 
     <!-- LOGIN CARD -->
-    <div class="glass-card" style="width: 100%; max-width: 440px; padding: 3rem 2.5rem; text-align: center; z-index: 10;" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="glass-card" style="width: 100%; max-width: 440px; padding: 3rem 2.5rem; text-align: center; z-index: 10; border-radius: var(--radius-md);" data-aos="zoom-in" data-aos-duration="1000">
         <div style="margin-bottom: 2rem;">
             <a href="index.html" style="display: inline-block;">
-                <img src="images/logo.webp" alt="Stackly Logo" style="height: 42px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
+                <img src="images/logo.webp" alt="Stackly Logo" style="height: 36px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
             </a>
-            <h2 style="font-size: 1.5rem; margin-top: 1rem; color: var(--text-light);">Access Client Portal</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Sign in to view real-time attribution reports.</p>
-            <a href="index.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-house"></i> Back to Home</a>
+            <h2 style="font-size: 1.8rem; font-weight: 700; margin-top: 1.2rem; color: var(--text-light);">Welcome Back</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Access your client portal or marketing dashboard.</p>
         </div>
 
         <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block'; setTimeout(() => { window.location.href='dashboard.html'; }, 1500);">
             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
+                    <input type="email" id="email" placeholder="john@example.com" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast); outline: none;">
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="password" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Password</label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
+                    <input type="password" id="password" placeholder="••••••••" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast); outline: none;">
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <label for="role" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Select Role</label>
                 <div style="position: relative;">
-                    <i class="fa-solid fa-user-shield" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
+                    <i class="fa-solid fa-user" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
                     <select id="role" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast); outline: none; appearance: none; -webkit-appearance: none;">
-                        <option value="" disabled selected style="background-color: var(--bg-secondary); color: var(--text-muted);">Choose account role</option>
+                        <option value="" disabled selected style="background-color: var(--bg-secondary); color: var(--text-muted);">Select Role</option>
                         <option value="client" style="background-color: var(--bg-secondary); color: var(--text-light);">Client (View Analytics)</option>
                         <option value="specialist" style="background-color: var(--bg-secondary); color: var(--text-light);">Agency Specialist (Edit Campaigns)</option>
                         <option value="admin" style="background-color: var(--bg-secondary); color: var(--text-light);">System Administrator (Manage Accounts)</option>
@@ -50,30 +70,14 @@
                 </div>
             </div>
 
-            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
-                <div style="position: relative;">
-                    <i class="fa-solid fa-envelope" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
-                    <input type="email" id="email" placeholder="client@company.com" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast);">
-                </div>
-            </div>
-
-            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                <label for="password" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Password</label>
-                <div style="position: relative;">
-                    <i class="fa-solid fa-lock" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
-                    <input type="password" id="password" placeholder="••••••••" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast);">
-                </div>
-            </div>
-
             <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; margin-top: 0.2rem;">
                 <label style="display: flex; align-items: center; gap: 0.4rem; color: var(--text-muted); cursor: pointer;">
-                    <input type="checkbox" style="accent-color: var(--accent);"> Remember me
+                    <input type="checkbox" style="accent-color: var(--accent);"> Remember Me
                 </label>
-                <a href="#" style="color: var(--accent); font-weight: 600;">Forgot Password?</a>
+                <a href="#" style="color: var(--accent); font-weight: 600; text-decoration: none;">Forgot Password?</a>
             </div>
 
-            <button type="submit" class="btn btn-accent" style="width: 100%; padding: 0.9rem; margin-top: 0.5rem; font-weight: 700; border-radius: var(--radius-sm);">Sign In to Dashboard <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+            <button type="submit" class="btn btn-accent" style="width: 100%; padding: 0.9rem; margin-top: 0.5rem; font-weight: 700; border-radius: var(--radius-sm);">Access Portal</button>
         </form>
 
         <div id="loginSuccess" style="display: none; padding: 2rem 0; animation: fadeIn 0.5s ease;">
@@ -84,13 +88,7 @@
         </div>
 
         <div style="margin-top: 2rem; border-top: 1px solid var(--border-glass); padding-top: 1.5rem;">
-            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.5rem;">Don't have an account? <a href="register.html" style="color: var(--accent); font-weight: 600;">Register here</a></p>
-            <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1rem;">Or sign in using SSO</p>
-            <div style="display: flex; justify-content: center; gap: 1rem;">
-                <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-google"></i></a>
-                <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-apple"></i></a>
-                <a href="#" style="width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; color: var(--text-light); transition: transform 0.2s;"><i class="fa-brands fa-windows"></i></a>
-            </div>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Don't have a marketing account? <a href="register.html" style="color: var(--accent); font-weight: 600; text-decoration: none;">Register Here</a></p>
         </div>
     </div>
 
