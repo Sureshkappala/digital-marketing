@@ -12,3 +12,5 @@ implementation_plan.md
 init_and_push_new.py
 sync_and_push.py
 download_images.py
+.vscode/
+

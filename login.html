@@ -31,10 +31,25 @@
                 <img src="images/logo.webp" alt="Stackly Logo" style="height: 42px; width: auto; object-fit: contain; filter: brightness(0) invert(1);">
             </a>
             <h2 style="font-size: 1.5rem; margin-top: 1rem; color: var(--text-light);">Access Client Portal</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Sign in to view real-time attribution reports.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Sign in to view real-time attribution reports.</p>
+            <a href="index.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: 600;"><i class="fa-solid fa-house"></i> Back to Home</a>
         </div>
 
         <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block'; setTimeout(() => { window.location.href='dashboard.html'; }, 1500);">
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                <label for="role" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Select Role</label>
+                <div style="position: relative;">
+                    <i class="fa-solid fa-user-shield" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem;"></i>
+                    <select id="role" required style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); background: rgba(255, 255, 255, 0.03); color: var(--text-light); transition: border-color var(--transition-fast); outline: none; appearance: none; -webkit-appearance: none;">
+                        <option value="" disabled selected style="background-color: var(--bg-secondary); color: var(--text-muted);">Choose account role</option>
+                        <option value="client" style="background-color: var(--bg-secondary); color: var(--text-light);">Client (View Analytics)</option>
+                        <option value="specialist" style="background-color: var(--bg-secondary); color: var(--text-light);">Agency Specialist (Edit Campaigns)</option>
+                        <option value="admin" style="background-color: var(--bg-secondary); color: var(--text-light);">System Administrator (Manage Accounts)</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.8rem; pointer-events: none;"></i>
+                </div>
+            </div>
+
             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
                 <div style="position: relative;">
