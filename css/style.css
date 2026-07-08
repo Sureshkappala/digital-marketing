@@ -2835,3 +2835,10 @@ html.menu-open, body.menu-open {
     }
 }
 
+/* Disable AOS scroll fade-in opacity locks inside Dashboards */
+body .db-container [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
