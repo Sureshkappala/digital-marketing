@@ -2723,3 +2723,82 @@ html.menu-open, body.menu-open {
     transform: translateY(1px);
 }
 
+/* Drawer Search & Contact Info */
+.drawer-search {
+    padding: 0 1.5rem;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+.drawer-contact-info {
+    padding: 1.5rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border-glass);
+    display: none;
+}
+.drawer-contact-info h5 {
+    color: var(--text-light);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+}
+.drawer-contact-info p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.drawer-contact-info p i {
+    color: var(--accent);
+    font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .drawer-search {
+        display: block;
+    }
+    .drawer-contact-info {
+        display: block;
+    }
+    
+    /* Highlight active link in mobile menu drawer */
+    .nav-links a.active {
+        color: var(--accent) !important;
+        border: 1px solid rgba(6, 182, 212, 0.35) !important;
+        background: rgba(6, 182, 212, 0.05) !important;
+        border-radius: var(--radius-sm) !important;
+        padding: 0.5rem 1.2rem !important;
+        display: inline-block !important;
+        width: calc(100% - 2.4rem) !important;
+        margin: 0 1.2rem !important;
+    }
+    
+    /* Style CTA buttons inside mobile menu drawer */
+    .nav-mobile-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1.5rem;
+        border-top: 1px solid var(--border-glass);
+        margin-top: 2rem;
+    }
+    .nav-mobile-cta .btn {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0.8rem !important;
+        border-radius: var(--radius-sm) !important;
+    }
+    .nav-mobile-cta .btn-primary {
+        background: var(--accent) !important;
+        color: #0b0f19 !important;
+        font-weight: 700 !important;
+    }
+    .nav-mobile-cta .btn-secondary {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid var(--border-glass) !important;
+        color: #fff !important;
+    }
+}
+
