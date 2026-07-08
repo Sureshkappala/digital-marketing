@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="System Settings - Global administrative configurations, API credentials, and email triggers.">
+    <title>System Settings | Stackly Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <style>
+        /* Reused Dashboard Styles */
+        body {
+            background-color: #0b0f17;
+            color: #f3f4f6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .db-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        .db-sidebar {
+            background-color: #0e1320;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar-logo {
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .sidebar-logo img {
+            height: 38px;
+            filter: brightness(0) invert(1);
+        }
+        .sidebar-section-title {
+            color: #4b5563;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
+        }
+        .sidebar-link.active {
+            border-left: 3px solid #10b981;
+            padding-left: calc(1rem - 3px);
+        }
+        .signout-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+        }
+        .signout-btn:hover {
+            background: rgba(239, 68, 68, 0.08);
+        }
+        .db-main {
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        .db-top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-nav-title {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .user-profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+        }
+        .user-info {
+            text-align: right;
+        }
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin: 0;
+        }
+        .user-role {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin: 0;
+        }
+        .db-welcome-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 0.5rem 0;
+        }
+        .db-welcome-hero p {
+            color: #9ca3af;
+            font-size: 1rem;
+            margin: 0;
+        }
+        .db-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1.2fr;
+            gap: 1.8rem;
+        }
+        .grid-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .panel-box {
+            background-color: #121824;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1.8rem;
+        }
+        .panel-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .panel-box-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+        .right-widget {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .db-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-light);
+            outline: none;
+            transition: border-color var(--transition-fast);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .db-input:focus { border-color: var(--primary); }
+        .system-meta-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.9rem;
+        }
+        .system-meta-item:last-child {
+            border-bottom: none;
+        }
+        .system-meta-label {
+            color: #9ca3af;
+        }
+        .system-meta-value {
+            color: #f3f4f6;
+            font-weight: 600;
+        }
+        @media (max-width: 1200px) {
+            .db-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .db-container { grid-template-columns: 1fr; }
+            .db-sidebar { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem; }
+            .sidebar-logo { margin-bottom: 0.5rem; }
+            .sidebar-section-title { display: none; }
+            .sidebar-menu { flex-direction: row; flex-wrap: wrap; margin-top: 1rem; }
+            .db-main { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="preloader-loader"></div>
+    </div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <div class="db-container">
+        <!-- SIDEBAR -->
+        <aside class="db-sidebar">
+            <div>
+                <a href="index.html" class="sidebar-logo">
+                    <img src="images/logo.webp" alt="Stackly Logo">
+                </a>
+                
+                <div class="sidebar-section-title">Admin Core</div>
+                <nav class="sidebar-menu">
+                    <a href="admin-dashboard.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Admin Overview</a>
+                    <a href="admin-users.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Client Accounts</a>
+                    <a href="admin-campaigns.html" class="sidebar-link"><i class="fa-solid fa-magnifying-glass-chart"></i> Campaign Controls</a>
+                </nav>
+
+                <div class="sidebar-section-title">Support & Config</div>
+                <nav class="sidebar-menu">
+                    <a href="admin-support.html" class="sidebar-link"><i class="fa-solid fa-inbox"></i> Tickets Inbox</a>
+                    <a href="admin-settings.html" class="sidebar-link active"><i class="fa-solid fa-gears"></i> System Settings</a>
+                </nav>
+            </div>
+            
+            <a href="login.html" class="signout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+        </aside>
+
+        <!-- MAIN PANEL -->
+        <main class="db-main">
+            <div class="db-top-nav">
+                <h4 class="top-nav-title">Global Portal Configurations</h4>
+                
+                <div class="user-profile-badge">
+                    <div class="user-info">
+                        <h5 class="user-name">Sarah Jenkins</h5>
+                        <p class="user-role">System Administrator</p>
+                    </div>
+                    <div class="user-avatar">SJ</div>
+                </div>
+            </div>
+
+            <div class="db-welcome-hero" data-aos="fade-right" data-aos-duration="1000">
+                <h1>Configurations Console</h1>
+                <p>Manage system API keys, backup triggers, and global environment variables.</p>
+            </div>
+
+            <!-- Layout Grid -->
+            <div class="db-grid">
+                <div class="grid-left">
+                    <!-- Config Box -->
+                    <div class="panel-box" data-aos="fade-up" data-aos-duration="1000">
+                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">API Key Management</h3>
+                        <form style="display: flex; flex-direction: column; gap: 1.2rem;" onsubmit="event.preventDefault(); alert('Global Configurations Saved!');">
+                            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                <label style="font-size: 0.8rem; font-weight: 600; color: #9ca3af;">Google Search Console API Endpoint</label>
+                                <input type="text" class="db-input" value="https://api.googleapis.com/webmasters/v3/sites/" required>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                <label style="font-size: 0.8rem; font-weight: 600; color: #9ca3af;">Meta Marketing Client Secret</label>
+                                <input type="password" class="db-input" value="••••••••••••••••••••••••" required>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                                <label style="font-size: 0.8rem; font-weight: 600; color: #9ca3af;">LinkedIn Insight Pixel ID</label>
+                                <input type="text" class="db-input" value="50482019" required>
+                            </div>
+                            <button type="submit" class="btn btn-accent" style="align-self: flex-start; padding: 0.7rem 1.5rem; font-size: 0.85rem; border-radius: var(--radius-sm); font-weight: 700;">Save API Settings</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="right-widget">
+                    <!-- System Specs -->
+                    <div class="panel-box" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">System Environment Details</h3>
+                        <div class="system-meta-item">
+                            <span class="system-meta-label">Environment</span>
+                            <span class="system-meta-value">Production</span>
+                        </div>
+                        <div class="system-meta-item">
+                            <span class="system-meta-label">Node Version</span>
+                            <span class="system-meta-value">v20.11.0</span>
+                        </div>
+                        <div class="system-meta-item">
+                            <span class="system-meta-label">Core Database</span>
+                            <span class="system-meta-value">PostgreSQL 16</span>
+                        </div>
+                        <div class="system-meta-item">
+                            <span class="system-meta-label">Last Database Backup</span>
+                            <span class="system-meta-value">Today, 03:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Theme Switch Button fixed in bottom right -->
+    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 100;">
+        <button class="theme-switch" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

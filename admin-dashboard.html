@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Operations Console - System monitoring and client campaign overrides.">
+    <title>Admin Dashboard | Stackly Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <style>
+        /* Reused Dashboard Styles */
+        body {
+            background-color: #0b0f17;
+            color: #f3f4f6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .db-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+        .db-sidebar {
+            background-color: #0e1320;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2.5rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sidebar-logo {
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .sidebar-logo img {
+            height: 38px;
+            filter: brightness(0) invert(1);
+        }
+        .sidebar-section-title {
+            color: #4b5563;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: #9ca3af;
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .sidebar-link:hover, .sidebar-link.active {
+            background: rgba(16, 185, 129, 0.08);
+            color: #10b981;
+        }
+        .sidebar-link.active {
+            border-left: 3px solid #10b981;
+            padding-left: calc(1rem - 3px);
+        }
+        .signout-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+        }
+        .signout-btn:hover {
+            background: rgba(239, 68, 68, 0.08);
+        }
+        .db-main {
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        .db-top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-nav-title {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .user-profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+        }
+        .user-info {
+            text-align: right;
+        }
+        .user-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin: 0;
+        }
+        .user-role {
+            font-size: 0.75rem;
+            color: #6b7280;
+            margin: 0;
+        }
+        .db-welcome-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 0.5rem 0;
+        }
+        .db-welcome-hero p {
+            color: #9ca3af;
+            font-size: 1rem;
+            margin: 0;
+        }
+        .db-stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .stat-card {
+            background-color: #121824;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+        .stat-icon-wrapper {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .icon-spend { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+        .icon-conv { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .icon-clicks { background: rgba(6, 182, 212, 0.1); color: #06b6d4; }
+        .icon-roas { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .db-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 1.8rem;
+        }
+        .grid-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .panel-box {
+            background-color: #121824;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 1.8rem;
+        }
+        .panel-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .panel-box-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+        .db-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .db-table th {
+            color: #4b5563;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .db-table td {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            font-size: 0.9rem;
+            color: #9ca3af;
+        }
+        .db-table tr:last-child td {
+            border-bottom: none;
+        }
+        .text-light-value {
+            color: #f3f4f6;
+            font-weight: 600;
+        }
+        .badge-status {
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .status-active { background: rgba(16, 185, 129, 0.08); color: #10b981; }
+        .status-pending { background: rgba(245, 158, 11, 0.08); color: #f59e0b; }
+        .status-suspended { background: rgba(239, 68, 68, 0.08); color: #ef4444; }
+        .status-completed { background: rgba(59, 130, 246, 0.08); color: #3b82f6; }
+        .right-widget {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .widget-metric-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .widget-metric-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+        .widget-progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .widget-progress-fill {
+            height: 100%;
+            background: #10b981;
+            border-radius: 3px;
+        }
+        @media (max-width: 1200px) {
+            .db-stats-row { grid-template-columns: repeat(2, 1fr); }
+            .db-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .db-container { grid-template-columns: 1fr; }
+            .db-sidebar { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 1.5rem; }
+            .sidebar-logo { margin-bottom: 0.5rem; }
+            .sidebar-section-title { display: none; }
+            .sidebar-menu { flex-direction: row; flex-wrap: wrap; margin-top: 1rem; }
+            .db-main { padding: 1.5rem; }
+            .db-stats-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="preloader">
+        <div class="preloader-loader"></div>
+    </div>
+    
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <div class="db-container">
+        <!-- SIDEBAR -->
+        <aside class="db-sidebar">
+            <div>
+                <a href="index.html" class="sidebar-logo">
+                    <img src="images/logo.webp" alt="Stackly Logo">
+                </a>
+                
+                <div class="sidebar-section-title">Admin Core</div>
+                <nav class="sidebar-menu">
+                    <a href="admin-dashboard.html" class="sidebar-link active"><i class="fa-solid fa-chart-pie"></i> Admin Overview</a>
+                    <a href="admin-users.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Client Accounts</a>
+                    <a href="admin-campaigns.html" class="sidebar-link"><i class="fa-solid fa-magnifying-glass-chart"></i> Campaign Controls</a>
+                </nav>
+
+                <div class="sidebar-section-title">Support & Config</div>
+                <nav class="sidebar-menu">
+                    <a href="admin-support.html" class="sidebar-link"><i class="fa-solid fa-inbox"></i> Tickets Inbox</a>
+                    <a href="admin-settings.html" class="sidebar-link"><i class="fa-solid fa-gears"></i> System Settings</a>
+                </nav>
+            </div>
+            
+            <a href="login.html" class="signout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+        </aside>
+
+        <!-- MAIN PANEL -->
+        <main class="db-main">
+            <div class="db-top-nav">
+                <h4 class="top-nav-title">Operations Admin Control Room</h4>
+                
+                <div class="user-profile-badge">
+                    <div class="user-info">
+                        <h5 class="user-name">Sarah Jenkins</h5>
+                        <p class="user-role">System Administrator</p>
+                    </div>
+                    <div class="user-avatar">SJ</div>
+                </div>
+            </div>
+
+            <div class="db-welcome-hero" data-aos="fade-right" data-aos-duration="1000">
+                <h1>Global Telemetry Controls</h1>
+                <p>Override client campaigns, review support tickets, and manage API pipelines.</p>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="db-stats-row" data-aos="fade-up" data-aos-duration="800">
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Managed Budget</div>
+                        <h3 class="stat-value">$452,800</h3>
+                    </div>
+                    <div class="stat-icon-wrapper icon-spend"><i class="fa-solid fa-wallet"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Client Portals</div>
+                        <h3 class="stat-value">18 Accounts</h3>
+                    </div>
+                    <div class="stat-icon-wrapper icon-clicks"><i class="fa-solid fa-users"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Global ROAS Avg</div>
+                        <h3 class="stat-value">4.62x ROAS</h3>
+                    </div>
+                    <div class="stat-icon-wrapper icon-conv"><i class="fa-solid fa-chart-line"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div>
+                        <div class="stat-label">Open Alerts</div>
+                        <h3 class="stat-value">3 Urgent</h3>
+                    </div>
+                    <div class="stat-icon-wrapper icon-roas"><i class="fa-solid fa-circle-exclamation"></i></div>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="db-grid">
+                <div class="grid-left">
+                    <div class="panel-box" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="panel-box-header">
+                            <h3 class="panel-box-title">Client Account Statuses</h3>
+                        </div>
+                        <table class="db-table">
+                            <thead>
+                                <tr>
+                                    <th>Client Company</th>
+                                    <th>Main Domain</th>
+                                    <th>Billing Status</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-light-value">NovaSaaS Solutions</td>
+                                    <td>novasaas.com</td>
+                                    <td>$45,280 (Q3 Plan)</td>
+                                    <td><span class="badge-status status-active">Active</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-light-value">AgriGrowth Farms</td>
+                                    <td>agrigrowth.com</td>
+                                    <td>$12,500 (Basic)</td>
+                                    <td><span class="badge-status status-suspended">Suspended</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-light-value">SolarEdge Energy</td>
+                                    <td>solaredge.io</td>
+                                    <td>$0 (In Setup)</td>
+                                    <td><span class="badge-status status-pending">In Setup</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="right-widget">
+                    <div class="panel-box" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="panel-box-title" style="margin-bottom: 1.5rem;">System Health</h3>
+                        
+                        <div class="widget-metric-row">
+                            <div class="widget-metric-header">
+                                <span>API Feed Pipelines</span>
+                                <span class="text-light-value">100%</span>
+                            </div>
+                            <div class="widget-progress-bar">
+                                <div class="widget-progress-fill" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="widget-metric-row">
+                            <div class="widget-metric-header">
+                                <span>Server Latency</span>
+                                <span class="text-light-value">240ms</span>
+                            </div>
+                            <div class="widget-progress-bar">
+                                <div class="widget-progress-fill" style="width: 90%; background-color: #3b82f6;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Theme Switch Button fixed in bottom right -->
+    <div style="position: fixed; bottom: 2rem; right: 2rem; z-index: 100;">
+        <button class="theme-switch" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+            <i class="fa-solid fa-sun"></i>
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800, easing: 'ease-out-cubic' });
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

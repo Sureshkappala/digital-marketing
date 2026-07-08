@@ -39,7 +39,7 @@
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">Access your client portal or marketing dashboard.</p>
         </div>
 
-        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block'; setTimeout(() => { window.location.href='dashboard.html'; }, 1500);">
+        <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;" onsubmit="event.preventDefault(); const r = document.getElementById('role').value; document.getElementById('loginForm').style.display='none'; document.getElementById('loginSuccess').style.display='block'; setTimeout(() => { window.location.href = (r === 'admin') ? 'admin-dashboard.html' : 'dashboard.html'; }, 1500);">
             <div class="form-group" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <label for="email" style="font-size: 0.85rem; font-weight: 600; color: var(--text-light);">Email Address</label>
                 <div style="position: relative;">
