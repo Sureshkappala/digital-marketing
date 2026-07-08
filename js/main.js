@@ -693,7 +693,11 @@ function initRedirectsTo404() {
                 btn.closest('.drawer-close') || 
                 btn.closest('.drawer-toggle') || 
                 btn.classList.contains('slider-btn') || 
-                btn.closest('.slider-btn')
+                btn.closest('.slider-btn') ||
+                btn.classList.contains('db-hamburger') ||
+                btn.closest('.db-hamburger') ||
+                btn.classList.contains('db-sidebar-close') ||
+                btn.closest('.db-sidebar-close')
             ) {
                 return;
             }
