@@ -938,24 +938,40 @@ function showCustomAlert(message, type = 'error') {
 
 // 8. Dynamic user credentials display inside dashboards
 function initDashboardUserCredentials() {
-    const userNameElement = document.querySelector('.user-name');
-    const userAvatarElement = document.querySelector('.user-avatar');
+    const userNameElements = document.querySelectorAll('.user-name');
+    const userAvatarElements = document.querySelectorAll('.user-avatar');
     
-    if (userNameElement) {
-        const storedName = localStorage.getItem('loggedInUserName');
-        
-        if (storedName) {
-            userNameElement.textContent = storedName;
-            
-            // Generate user initials for avatar block
-            if (userAvatarElement && userAvatarElement.tagName !== 'IMG') {
-                const nameParts = storedName.split(' ');
-                let initials = nameParts[0].charAt(0);
-                if (nameParts.length > 1) {
-                    initials += nameParts[1].charAt(0);
-                }
-                userAvatarElement.textContent = initials.toUpperCase();
+    const storedName = localStorage.getItem('loggedInUserName');
+    const storedEmail = localStorage.getItem('loggedInUserEmail');
+    
+    if (storedName) {
+        userNameElements.forEach(elem => {
+            if (elem.tagName === 'INPUT') {
+                elem.value = storedName;
+            } else {
+                elem.textContent = storedName;
             }
-        }
+        });
+        
+        // Generate user initials for avatar block
+        let initials = '';
+        const nameParts = storedName.split(' ');
+        if (nameParts[0]) initials += nameParts[0].charAt(0);
+        if (nameParts.length > 1 && nameParts[1]) initials += nameParts[1].charAt(0);
+        initials = initials.toUpperCase();
+        
+        userAvatarElements.forEach(elem => {
+            if (elem.tagName !== 'IMG') {
+                elem.textContent = initials;
+            }
+        });
+    }
+    
+    // Also update any email inputs in the profile dashboard
+    if (storedEmail) {
+        const emailInputs = document.querySelectorAll('#profile-email, input[type="email"].db-input');
+        emailInputs.forEach(input => {
+            input.value = storedEmail;
+        });
     }
 }
