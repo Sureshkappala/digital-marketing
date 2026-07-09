@@ -127,7 +127,6 @@
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-strip-grid { grid-template-columns: 1fr; }
     .blog-grid { grid-template-columns: 1fr; }
-    .newsletter-form { flex-direction: column; }
     .newsletter-banner { padding: 3rem 1.5rem; }
 }@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
@@ -2185,19 +2184,40 @@ body.light .mock-map {
     display: flex;
     gap: 0.8rem;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 0;
+    align-items: center;
 }
 .newsletter-form input {
     flex-grow: 1;
     padding: 0.8rem 1.2rem;
     border-radius: var(--radius-full);
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-glass);
     color: var(--text-light);
     font-size: 0.9rem;
+    outline: none;
+    height: 44px;
 }
 .newsletter-form input:focus {
-    border-color: var(--primary);
+    border-color: var(--accent);
+}
+.newsletter-form button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0f19;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.newsletter-form button:hover {
+    transform: scale(1.05);
 }
 
 /* ==========================================================================
@@ -2444,7 +2464,6 @@ body.light .mock-map {
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .stats-strip-grid { grid-template-columns: 1fr; }
     .blog-grid { grid-template-columns: 1fr; }
-    .newsletter-form { flex-direction: column; }
     .newsletter-banner { padding: 3rem 1.5rem; }
 }
 
