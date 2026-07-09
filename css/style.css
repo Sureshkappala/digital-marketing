@@ -2842,3 +2842,11 @@ body .db-container [data-aos] {
     transition: none !important;
 }
 
+/* Prevent double scrollbar on desktop dashboard pages */
+@media (min-width: 769px) {
+    html:has(.db-container),
+    body:has(.db-container) {
+        overflow: hidden !important;
+        height: 100vh !important;
+    }
+}
