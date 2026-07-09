@@ -2898,3 +2898,13 @@ body .db-container [data-aos] {
         height: 100vh !important;
     }
 }
+
+.password-toggle:hover {
+    color: var(--accent) !important;
+}
+
+/* Hide default browser reveal password button */
+input::-ms-reveal,
+input::-ms-clear {
+    display: none !important;
+}

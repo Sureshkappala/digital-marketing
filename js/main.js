@@ -141,7 +141,7 @@ function initNavbar() {
             header.classList.remove('scrolled');
         }
 
-        // Active Nav link on scroll highlight
+        // Active Nav link on scroll highlight (only for hash links)
         let currentSectionId = '';
         sections.forEach(sec => {
             const sectionTop = sec.offsetTop - 140;
@@ -151,13 +151,17 @@ function initNavbar() {
             }
         });
 
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            const href = link.getAttribute('href');
-            if (href === `#${currentSectionId}` || (currentSectionId === 'hero' && href === '#')) {
-                link.classList.add('active');
-            }
-        });
+        if (currentSectionId) {
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    link.classList.remove('active');
+                    if (href === `#${currentSectionId}` || (currentSectionId === 'hero' && href === '#')) {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }
     });
 
     // Mobile Hamburger Menu
@@ -975,3 +979,23 @@ function initDashboardUserCredentials() {
         });
     }
 }
+
+// Toggle password visibility (eye icon)
+function togglePasswordVisibility(inputId, toggleIconContainer) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    
+    const icon = toggleIconContainer.querySelector('i');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+        toggleIconContainer.style.color = 'var(--accent)';
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+        toggleIconContainer.style.color = 'var(--text-muted)';
+    }
+}
+window.togglePasswordVisibility = togglePasswordVisibility;
