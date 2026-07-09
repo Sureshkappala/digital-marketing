@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initRedirectsTo404();
     initFormInputsValidation();
     initDashboardMobileSidebar();
+    initDashboardUserCredentials();
 });
 
 /* ==========================================================================
@@ -775,6 +776,7 @@ function initFormInputsValidation() {
             }
 
             // Success: Hide form and show success message
+            localStorage.setItem('loggedInUserName', nameVal);
             registerForm.style.display = 'none';
             const successMsg = document.getElementById('registerSuccess');
             if (successMsg) {
@@ -805,6 +807,14 @@ function initFormInputsValidation() {
             }
 
             // Success: Hide form and show success message
+            if (!localStorage.getItem('loggedInUserName') || localStorage.getItem('loggedInUserEmail') !== emailVal) {
+                const namePart = emailVal.split('@')[0];
+                const formattedName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+                localStorage.setItem('loggedInUserName', formattedName);
+            }
+            localStorage.setItem('loggedInUserEmail', emailVal);
+            localStorage.setItem('loggedInUserRole', roleVal);
+
             loginForm.style.display = 'none';
             const successMsg = document.getElementById('loginSuccess');
             if (successMsg) {
@@ -924,4 +934,28 @@ function showCustomAlert(message, type = 'error') {
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) closeAlert();
     });
+}
+
+// 8. Dynamic user credentials display inside dashboards
+function initDashboardUserCredentials() {
+    const userNameElement = document.querySelector('.user-name');
+    const userAvatarElement = document.querySelector('.user-avatar');
+    
+    if (userNameElement) {
+        const storedName = localStorage.getItem('loggedInUserName');
+        
+        if (storedName) {
+            userNameElement.textContent = storedName;
+            
+            // Generate user initials for avatar block
+            if (userAvatarElement && userAvatarElement.tagName !== 'IMG') {
+                const nameParts = storedName.split(' ');
+                let initials = nameParts[0].charAt(0);
+                if (nameParts.length > 1) {
+                    initials += nameParts[1].charAt(0);
+                }
+                userAvatarElement.textContent = initials.toUpperCase();
+            }
+        }
+    }
 }

@@ -5,11 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Client Login Portal - Sign in to access your campaign stats, keyword reports, and attribution dashboards at Stackly.">
     <title>Client Login | Stackly Portal</title>
-    <link rel="stylesheet" href="css/style.css?v=1.9">
+    <link rel="stylesheet" href="css/style.css?v=2.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <style>
+        .back-to-home-container {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+        }
+        @media (max-width: 768px) {
+            .back-to-home-container {
+                position: static !important;
+                margin-bottom: 1.5rem !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+            .back-to-home-container a {
+                display: inline-flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+        }
+    </style>
 </head>
-<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: var(--bg-primary);">
+<body style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem 1.5rem; background-color: var(--bg-primary);">
 
     <div class="preloader">
         <div class="preloader-loader"></div>
@@ -20,7 +41,7 @@
     <div class="custom-cursor-dot"></div>
 
     <!-- Floating Back to Home Button -->
-    <div style="position: absolute; top: 2rem; left: 2rem; z-index: 100;">
+    <div class="back-to-home-container">
         <a href="index.html" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; border-radius: var(--radius-sm);"><i class="fa-solid fa-house"></i> Back to Home</a>
     </div>
 

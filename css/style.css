@@ -18,22 +18,24 @@
     .navbar {
         position: fixed;
         top: 0;
-        right: -300px;
-        width: 280px;
+        right: -320px;
+        width: 300px;
         height: 100vh;
         background: var(--bg-primary);
         border-left: 1px solid var(--border-glass);
         flex-direction: column;
         align-items: stretch;
-        gap: 1.5rem;
+        gap: 0;
         z-index: 100;
         transition: right var(--transition-normal);
         display: flex;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .navbar.active { right: 0; }
     .drawer-header { display: flex; }
-    .nav-links { flex-direction: column; padding: 2rem 1.5rem; gap: 1.5rem; }
-    .nav-links a { font-size: 1.1rem; }
+    .nav-links { flex-direction: column; padding: 1.5rem; gap: 0.5rem; }
+    .nav-links a { font-size: 1.05rem; padding: 0.8rem 1rem; display: block; border-radius: var(--radius-sm); }
     .nav-controls { padding: 0 1.5rem; flex-direction: column; align-items: stretch; gap: 1rem; }
     
     /* Interactive Console Responsiveness */
@@ -2356,14 +2358,14 @@ body.light .mock-map {
     .navbar {
         position: fixed;
         top: 0;
-        right: -300px;
-        width: 280px;
+        right: -320px;
+        width: 300px;
         height: 100vh;
         background: var(--bg-primary);
         border-left: 1px solid var(--border-glass);
         flex-direction: column;
         align-items: stretch;
-        gap: 1.5rem;
+        gap: 0;
         z-index: 100;
         transition: right var(--transition-normal);
         display: flex;
@@ -2372,8 +2374,8 @@ body.light .mock-map {
     }
     .navbar.active { right: 0; }
     .drawer-header { display: flex; }
-    .nav-links { flex-direction: column; padding: 2rem 1.5rem; gap: 1.5rem; }
-    .nav-links a { font-size: 1.1rem; }
+    .nav-links { flex-direction: column; padding: 1.5rem; gap: 0.5rem; }
+    .nav-links a { font-size: 1.05rem; padding: 0.8rem 1rem; display: block; border-radius: var(--radius-sm); }
     .nav-controls { gap: 0.5rem; }
     .nav-controls .btn { display: none; }
     .nav-mobile-cta {
@@ -2799,13 +2801,9 @@ html.menu-open, body.menu-open {
     /* Highlight active link in mobile menu drawer */
     .nav-links a.active {
         color: var(--accent) !important;
-        border: 1px solid rgba(6, 182, 212, 0.35) !important;
-        background: rgba(6, 182, 212, 0.05) !important;
-        border-radius: var(--radius-sm) !important;
-        padding: 0.5rem 1.2rem !important;
-        display: inline-block !important;
-        width: calc(100% - 2.4rem) !important;
-        margin: 0 1.2rem !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-left: 3px solid var(--accent) !important;
+        padding-left: 1.2rem !important;
     }
     
     /* Style CTA buttons inside mobile menu drawer */
