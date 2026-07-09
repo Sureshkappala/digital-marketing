@@ -2184,8 +2184,11 @@ body.light .mock-map {
     display: flex;
     gap: 0.8rem;
     max-width: 500px;
-    margin: 0;
+    margin: 0 auto;
     align-items: center;
+}
+.footer-col .newsletter-form {
+    margin: 0;
 }
 .newsletter-form input {
     flex-grow: 1;
@@ -2197,11 +2200,12 @@ body.light .mock-map {
     font-size: 0.9rem;
     outline: none;
     height: 44px;
+    min-width: 0;
 }
 .newsletter-form input:focus {
     border-color: var(--accent);
 }
-.newsletter-form button {
+.newsletter-form button:not(.btn) {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -2216,8 +2220,30 @@ body.light .mock-map {
     font-size: 0.95rem;
     transition: background var(--transition-fast), transform var(--transition-fast);
 }
-.newsletter-form button:hover {
+.newsletter-form button:not(.btn):hover {
     transform: scale(1.05);
+}
+.newsletter-form button.btn {
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.8rem;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+@media (max-width: 480px) {
+    .newsletter-form {
+        gap: 0.5rem !important;
+    }
+    .newsletter-form input {
+        padding: 0.8rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+    .newsletter-form button.btn {
+        padding: 0 1.2rem !important;
+        font-size: 0.85rem !important;
+    }
 }
 
 /* ==========================================================================
